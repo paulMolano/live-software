@@ -2,7 +2,7 @@
 
 ## Proyecto
 
-Este repositorio es `software-vida`.
+Este repositorio es `live-software`.
 
 Es a la vez:
 

@@ -54,7 +54,7 @@ Phase 1 is complete when the repository installs with pnpm, Nx can discover all 
 4. `[FE] Create shell React host skeleton`
 5. `[FE] Create training MFE React remote skeleton`
 6. `[BE] Create API NestJS skeleton`
-7. `[CI] Define initial CI workflow direction`
+7. `[CI] Add initial GitHub Actions validation workflow`
 
 ## Issue 1: `[CHORE] Bootstrap Nx + pnpm monorepo foundation`
 
@@ -408,11 +408,11 @@ Create `apps/api` as the initial NestJS API skeleton without persistence, auth o
 - Generated tests pass.
 - Frontend apps are not coupled to the API.
 
-## Issue 7: `[CI] Define initial CI workflow direction`
+## Issue 7: `[CI] Add initial GitHub Actions validation workflow`
 
 ### Title
 
-`[CI] Define initial CI workflow direction`
+`[CI] Add initial GitHub Actions validation workflow`
 
 ### Goal
 

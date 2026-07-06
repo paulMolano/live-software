@@ -37,7 +37,7 @@ Y usar el proyecto para aprender:
 
 ## Cómo usar este seed
 
-1. Crea un repositorio vacío llamado `software-vida`.
+1. Crea un repositorio vacío llamado `live-software`.
 2. Descomprime este zip en la raíz del repo.
 3. Lee `AGENTS.md`, `docs/product/vision.md` y `docs/architecture/system-overview.md`.
 4. Abre Codex en VS Code.
