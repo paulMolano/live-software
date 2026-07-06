@@ -5,5 +5,5 @@ approval_policy = "on-request"
 sandbox_mode = "workspace-write"
 
 [project]
-name = "software-vida"
+name = "live-software"
 default_branch = "main"

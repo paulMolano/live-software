@@ -5,7 +5,7 @@
 Use one GitHub repository:
 
 ```txt
-software-vida
+live-software
 ```
 
 ## Project

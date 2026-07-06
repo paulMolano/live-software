@@ -4,7 +4,7 @@
 
 Un único repo:
 
-`software-vida`
+`live-software`
 
 ## GitHub Project
 

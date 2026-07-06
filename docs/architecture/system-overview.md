@@ -14,7 +14,7 @@ Monorepo único con:
 ## Estructura objetivo
 
 ```txt
-software-vida/
+live-software/
   apps/
     shell/
     training-mfe/

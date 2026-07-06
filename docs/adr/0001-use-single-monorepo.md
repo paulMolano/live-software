@@ -6,7 +6,7 @@ Accepted.
 
 ## Decision
 
-Use one repository: `software-vida`.
+Use one repository: `live-software`.
 
 ## Reason
 
