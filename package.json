@@ -1,0 +1,12 @@
+{
+  "name": "live-software",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.7.0",
+  "scripts": {
+    "nx": "nx"
+  },
+  "devDependencies": {
+    "nx": "23.0.1"
+  }
+}
