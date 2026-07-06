@@ -4,9 +4,12 @@
   "private": true,
   "packageManager": "pnpm@11.7.0",
   "scripts": {
-    "nx": "nx"
+    "nx": "nx",
+    "typecheck": "nx run-many -t typecheck --all",
+    "build": "nx run-many -t build --all"
   },
   "devDependencies": {
-    "nx": "23.0.1"
+    "nx": "23.0.1",
+    "typescript": "6.0.3"
   }
 }

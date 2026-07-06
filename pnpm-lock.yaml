@@ -11,6 +11,19 @@ importers:
       nx:
         specifier: 23.0.1
         version: 23.0.1
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+
+  packages/config: {}
+
+  packages/contracts: {}
+
+  packages/shared-utils: {}
+
+  packages/testing: {}
+
+  packages/ui-kit: {}
 
 packages:
 
@@ -467,6 +480,11 @@ packages:
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
+
+  typescript@6.0.3:
+    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
@@ -1014,6 +1032,8 @@ snapshots:
       strip-bom: 3.0.0
 
   tslib@2.8.1: {}
+
+  typescript@6.0.3: {}
 
   util-deprecate@1.0.2: {}
 

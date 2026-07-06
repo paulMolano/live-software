@@ -1,0 +1,23 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "shared-utils",
+  "projectType": "library",
+  "root": "packages/shared-utils",
+  "sourceRoot": "packages/shared-utils/src",
+  "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc -p packages/shared-utils/tsconfig.json --noEmit"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/packages/shared-utils"],
+      "options": {
+        "command": "tsc -p packages/shared-utils/tsconfig.json"
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:utility"]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "testing",
+  "projectType": "library",
+  "root": "packages/testing",
+  "sourceRoot": "packages/testing/src",
+  "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc -p packages/testing/tsconfig.json --noEmit"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/packages/testing"],
+      "options": {
+        "command": "tsc -p packages/testing/tsconfig.json"
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:testing"]
+}

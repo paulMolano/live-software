@@ -1,0 +1,23 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "ui-kit",
+  "projectType": "library",
+  "root": "packages/ui-kit",
+  "sourceRoot": "packages/ui-kit/src",
+  "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc -p packages/ui-kit/tsconfig.json --noEmit"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/packages/ui-kit"],
+      "options": {
+        "command": "tsc -p packages/ui-kit/tsconfig.json"
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:ui"]
+}

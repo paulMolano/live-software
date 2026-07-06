@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": ".",
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -13,6 +12,13 @@
     "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
+    "paths": {
+      "@live-software/config": ["./packages/config/src/index.ts"],
+      "@live-software/contracts": ["./packages/contracts/src/index.ts"],
+      "@live-software/shared-utils": ["./packages/shared-utils/src/index.ts"],
+      "@live-software/testing": ["./packages/testing/src/index.ts"],
+      "@live-software/ui-kit": ["./packages/ui-kit/src/index.ts"]
+    },
     "skipLibCheck": true,
     "strict": true,
     "target": "ES2022",
