@@ -1,0 +1,38 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "guide",
+  "projectType": "application",
+  "root": "apps/guide",
+  "sourceRoot": "apps/guide/app",
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm --filter @live-software/guide dev"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm --filter @live-software/guide lint"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm --filter @live-software/guide typecheck"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": [
+        "{workspaceRoot}/apps/guide/.next",
+        "{workspaceRoot}/apps/guide/out"
+      ],
+      "options": {
+        "command": "pnpm --filter @live-software/guide build"
+      }
+    }
+  },
+  "tags": ["scope:guide", "type:app"]
+}

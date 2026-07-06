@@ -1,0 +1,51 @@
+:root {
+  color-scheme: light;
+  --mantine-color-body: #f8faf8;
+  --guide-bg: #f8faf8;
+  --guide-surface: #ffffff;
+  --guide-surface-soft: #eef7f4;
+  --guide-ink: #1e2524;
+  --guide-muted: #596764;
+  --guide-line: #d7e0dc;
+  --guide-accent: #0f766e;
+  --guide-accent-strong: #0f4f49;
+  --guide-accent-warm: #b45309;
+  --guide-accent-red: #be123c;
+  --guide-focus: #2563eb;
+  --guide-radius: 8px;
+  --guide-shadow: 0 18px 48px rgb(30 37 36 / 10%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--guide-bg);
+  color: var(--guide-ink);
+  line-height: 1.5;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(180deg, rgb(238 247 244 / 84%), rgb(248 250 248 / 0%) 280px),
+    var(--guide-bg);
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--guide-focus);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgb(15 118 110 / 18%);
+}
