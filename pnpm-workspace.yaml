@@ -1,0 +1,11 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+autoInstallPeers: false
+confirmModulesPurge: false
+savePrefix: ""
+strictPeerDependencies: true
+
+allowBuilds:
+  nx: true
