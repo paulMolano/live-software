@@ -232,6 +232,23 @@ Herramienta gratuita preferida para explorar:
 
 Codex debe trabajar con issues pequeñas, planes y PRs revisables.
 
+### Documentation trail
+
+Cada PR significativo debe considerar si debe actualizar la traza de
+documentacion.
+
+Si el PR introduce una decision arquitectonica relevante, un flujo de trabajo,
+un setup tecnologico o un hito de aprendizaje, el PR debe hacer una de estas
+cosas:
+
+1. actualizar docs internos bajo `docs/`;
+2. actualizar `apps/guide`;
+3. anadir una nota a un backlog futuro de la guia;
+4. declarar explicitamente `No guide update needed` en la descripcion del PR.
+
+No actualizar `apps/guide` en PRs de implementacion no relacionados salvo que
+la issue lo pida explicitamente.
+
 Flujo obligatorio para tareas no triviales:
 
 1. Leer documentación relevante.

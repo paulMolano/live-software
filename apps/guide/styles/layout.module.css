@@ -1,0 +1,125 @@
+.skipLink {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  transform: translateY(-140%);
+  border-radius: var(--guide-radius);
+  background: var(--guide-ink);
+  color: #ffffff;
+  padding: 10px 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 160ms ease;
+}
+
+.skipLink:focus {
+  transform: translateY(0);
+}
+
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  border-bottom: 1px solid var(--guide-line);
+  background: rgb(255 255 255 / 82%);
+  backdrop-filter: blur(18px);
+}
+
+.headerInner {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  padding: 18px 0;
+}
+
+.brand {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+}
+
+.brandName {
+  color: var(--guide-ink);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.brandMeta {
+  color: var(--guide-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.navLink {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  border-radius: var(--guide-radius);
+  color: var(--guide-muted);
+  padding: 8px 10px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.navLink:hover {
+  background: var(--guide-surface-soft);
+  color: var(--guide-accent-strong);
+}
+
+.main {
+  flex: 1;
+  padding: 42px 0 64px;
+}
+
+.footer {
+  border-top: 1px solid var(--guide-line);
+  background: var(--guide-surface);
+}
+
+.footerInner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 0;
+  color: var(--guide-muted);
+  font-size: 0.9rem;
+}
+
+.footerLink {
+  color: var(--guide-accent-strong);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.footerLink:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 760px) {
+  .headerInner {
+    grid-template-columns: 1fr;
+  }
+
+  .nav {
+    justify-content: flex-start;
+  }
+}
