@@ -1,0 +1,9 @@
+# Example Codex config placeholder.
+# Copy to ~/.codex/config.toml or repo-local config if supported by your setup.
+
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+[project]
+name = "software-vida"
+default_branch = "main"

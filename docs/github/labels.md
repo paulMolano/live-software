@@ -1,0 +1,24 @@
+# GitHub Labels
+
+- type:feature
+- type:bug
+- type:chore
+- type:doc
+- type:spike
+- type:adr
+- area:shell
+- area:training-mfe
+- area:api
+- area:ui-kit
+- area:contracts
+- area:infra
+- area:docs
+- priority:P0
+- priority:P1
+- priority:P2
+- phase:0
+- phase:1
+- phase:2
+- learning-goal
+- needs-plan
+- needs-review
