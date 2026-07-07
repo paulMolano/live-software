@@ -16,6 +16,15 @@ Create one GitHub Project:
 Software Vida Roadmap
 ```
 
+The Project field model is documented in
+[`docs/github/project-fields.md`](project-fields.md). Those fields are not
+decorative; they define whether a task is ready, too large, requires docs or
+should be split before Codex works on it.
+
+The concrete Project configuration, starter epics, sub-issues and view filters
+are documented in
+[`docs/github/project-operating-model.md`](project-operating-model.md).
+
 ## Views
 
 - Backlog
@@ -23,8 +32,15 @@ Software Vida Roadmap
 - In Progress
 - Review
 - Done
-- Architecture
-- Learning Goals
+- Epics
+- Needs refinement
+- Guide required
+- Platform
+- Product
+- Guide
+- Agents
+- Design
+- Research
 
 ## Labels
 

@@ -10,6 +10,12 @@ dist/
 .next/
 apps/**/.next/
 apps/**/out/
+# Next.js build output
+.next/
+out/
+
+# TypeScript incremental build info
+*.tsbuildinfo
 
 # Test and coverage output
 coverage/
