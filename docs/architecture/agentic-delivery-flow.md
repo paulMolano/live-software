@@ -48,17 +48,22 @@ Codex can review a PR against:
 
 ```txt
 1. Human creates or approves a GitHub issue
-2. Codex reads the issue + AGENTS.md + relevant docs
-3. Codex creates a short plan
-4. Human approves or corrects the plan
-5. Codex implements in a branch
-6. Codex runs validation commands
-7. Codex opens or updates a PR
-8. CI runs
-9. Codex reviews the PR
-10. Human reviews the diff
-11. Human merges or requests changes
+2. Issue is classified in Live Software Roadmap
+3. Codex reads the issue + Project fields + AGENTS.md + relevant docs
+4. Codex confirms whether the issue is safe to execute
+5. Codex creates a short plan
+6. Human approves or corrects the plan
+7. Codex implements in a branch
+8. Codex runs validation commands
+9. Codex opens or updates a PR
+10. CI runs
+11. Codex reviews the PR
+12. Human reviews the diff
+13. Human merges or requests changes
 ```
+
+Project field definitions live in
+[`docs/github/project-fields.md`](../github/project-fields.md).
 
 ## What Codex should never do automatically
 
@@ -73,6 +78,12 @@ Codex can review a PR against:
 ## Issue size rule
 
 A good issue should be finishable in one focused PR.
+
+Use `Size` to make that explicit:
+
+- `S` and `M` are normally good Codex tasks.
+- `L` is acceptable only when tightly scoped.
+- `XL` should become an epic or be split.
 
 Bad issue:
 
@@ -115,10 +126,16 @@ Each PR must include:
 - linked issue
 - summary
 - files changed
+- guide/docs update decision
 - validation commands
+- validation result
 - screenshots if UI changed
 - risks
-- follow-up tasks
+- recommended next issue
+
+If `Guide update` is `Required`, the PR must update internal docs, update the
+future Next.js guide or explicitly explain why the documentation update was
+deferred.
 
 ## Human review checklist
 
@@ -126,10 +143,11 @@ Before merging:
 
 - Is the diff small enough?
 - Does it respect the issue scope?
+- Does it respect the Project fields?
 - Does it respect boundaries?
 - Does TypeScript pass?
 - Are tests adequate for the risk?
-- Are docs updated if architecture changed?
+- Are docs updated when `Guide update` is `Required`?
 - Did Codex add unnecessary dependencies?
 - Can the change be reverted easily?
 

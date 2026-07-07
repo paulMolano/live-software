@@ -232,6 +232,23 @@ Herramienta gratuita preferida para explorar:
 
 Codex debe trabajar con issues pequeñas, planes y PRs revisables.
 
+### GitHub Project fields
+
+Codex debe usar los campos del Project `Live Software Roadmap` al crear,
+refinar, ejecutar o revisar tareas. La referencia vive en
+`docs/github/project-fields.md`.
+
+Reglas:
+
+- al crear o refinar issues, proponer `Track`, `Work type`, `Size`,
+  `Codex ready` y `Guide update`;
+- no implementar directamente una issue con `Work type: Epic`, `Size: XL` o
+  `Codex ready` distinto de `Ready`;
+- si `Guide update` es `Required`, actualizar docs/guía o explicar en el PR por
+  qué se difiere;
+- en review, comprobar que el PR respeta scope, campos del Project, validación,
+  riesgos y decisión de docs/guía.
+
 Flujo obligatorio para tareas no triviales:
 
 1. Leer documentación relevante.
