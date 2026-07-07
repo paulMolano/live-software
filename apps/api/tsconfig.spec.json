@@ -1,0 +1,17 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"outDir": "../../dist/apps/api-test",
+		"rootDir": ".",
+		"declaration": false,
+		"sourceMap": false,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true
+	},
+	"include": [
+		"src/**/*.spec.ts",
+		"test/**/*.ts"
+	]
+}

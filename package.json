@@ -7,7 +7,8 @@
     "nx": "nx",
     "lint": "nx run-many -t lint --all",
     "typecheck": "nx run-many -t typecheck --all",
-    "build": "nx run-many -t build --all"
+    "build": "nx run-many -t build --all",
+    "test": "nx run api:test"
   },
   "devDependencies": {
     "nx": "23.0.1",

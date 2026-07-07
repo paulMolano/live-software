@@ -1,0 +1,43 @@
+{
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"name": "api",
+	"projectType": "application",
+	"root": "apps/api",
+	"sourceRoot": "apps/api/src",
+	"targets": {
+		"dev": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "pnpm --filter @live-software/api dev"
+			}
+		},
+		"typecheck": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "pnpm --filter @live-software/api typecheck"
+			}
+		},
+		"build": {
+			"executor": "nx:run-commands",
+			"outputs": [
+				"{workspaceRoot}/dist/apps/api"
+			],
+			"options": {
+				"command": "pnpm --filter @live-software/api build"
+			}
+		},
+		"test": {
+			"executor": "nx:run-commands",
+			"outputs": [
+				"{workspaceRoot}/dist/apps/api-test"
+			],
+			"options": {
+				"command": "pnpm --filter @live-software/api test"
+			}
+		}
+	},
+	"tags": [
+		"scope:api",
+		"type:app"
+	]
+}
