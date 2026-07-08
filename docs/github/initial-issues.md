@@ -1,5 +1,8 @@
 # Initial GitHub Issues
 
+Current reconciliation status: see
+[initial-issues-status.md](./initial-issues-status.md).
+
 ## Docs
 
 - [DOC] Add project vision and roadmap

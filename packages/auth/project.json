@@ -1,0 +1,23 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "auth",
+  "projectType": "library",
+  "root": "packages/auth",
+  "sourceRoot": "packages/auth/src",
+  "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc -p packages/auth/tsconfig.json --noEmit"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/packages/auth"],
+      "options": {
+        "command": "tsc -p packages/auth/tsconfig.json"
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:auth"]
+}

@@ -8,6 +8,8 @@ import {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMantineColorScheme } from '@mantine/core';
+import { useAuth, type AuthStatus } from '@live-software/auth';
+import { getShellApiBaseUrl } from './auth-runtime-config';
 import { lazyProvider } from './mf';
 import { useUiStore } from './state/ui-store';
 import * as styles from './App.module.css';
@@ -156,6 +158,144 @@ function UiPreferencesControls() {
   );
 }
 
+type ProtectedApiState =
+  | 'idle'
+  | 'loading'
+  | 'success'
+  | 'unauthorized'
+  | 'forbidden'
+  | 'error';
+
+function authStatusLabel(status: AuthStatus, t: (key: string) => string): string {
+  switch (status) {
+    case 'loading':
+      return t('authLoading');
+    case 'authenticating':
+      return t('authAuthenticating');
+    case 'authenticated':
+      return t('authAuthenticated');
+    case 'error':
+      return t('authError');
+    case 'unauthenticated':
+      return t('authUnauthenticated');
+  }
+
+  return t('authUnauthenticated');
+}
+
+function protectedApiStatusLabel(
+  status: ProtectedApiState,
+  t: (key: string) => string
+): string {
+  switch (status) {
+    case 'idle':
+      return t('authProtectedIdle');
+    case 'loading':
+      return t('authProtectedLoading');
+    case 'success':
+      return t('authProtectedSuccess');
+    case 'unauthorized':
+      return t('authProtectedUnauthorized');
+    case 'forbidden':
+      return t('authProtectedForbidden');
+    case 'error':
+      return t('authProtectedError');
+  }
+
+  return t('authProtectedError');
+}
+
+function AuthControls() {
+  const { t } = useTranslation();
+  const auth = useAuth();
+  const [protectedApiState, setProtectedApiState] =
+    useState<ProtectedApiState>('idle');
+
+  const checkProtectedApi = async () => {
+    setProtectedApiState('loading');
+
+    try {
+      const accessToken = auth.getAccessToken();
+      const response = await fetch(`${getShellApiBaseUrl()}/api/auth/session`, {
+        headers: accessToken
+          ? {
+              Authorization: `Bearer ${accessToken}`,
+            }
+          : {},
+      });
+
+      if (response.ok) {
+        setProtectedApiState('success');
+        return;
+      }
+
+      if (response.status === 401) {
+        setProtectedApiState('unauthorized');
+        return;
+      }
+
+      if (response.status === 403) {
+        setProtectedApiState('forbidden');
+        return;
+      }
+
+      setProtectedApiState('error');
+    } catch {
+      setProtectedApiState('error');
+    }
+  };
+
+  const busy = auth.status === 'loading' || auth.status === 'authenticating';
+  const statusText = authStatusLabel(auth.status, t);
+  const protectedApiText = protectedApiStatusLabel(protectedApiState, t);
+  const statusClassName =
+    auth.status === 'error' || protectedApiState === 'error'
+      ? styles.dangerText
+      : auth.isAuthenticated || protectedApiState === 'success'
+        ? styles.successText
+        : undefined;
+
+  return (
+    <section className={styles.controlGroup} aria-label={t('authLabel')}>
+      <span className={styles.controlLabel}>{t('authStatus')}:</span>
+      <span className={statusClassName}>{statusText}</span>
+      {auth.user ? (
+        <span>
+          {t('authUserLabel')}: {auth.user.name ?? auth.user.username ?? auth.user.id}
+        </span>
+      ) : null}
+      <button
+        type="button"
+        className={styles.controlButton}
+        onClick={() => void auth.login()}
+        disabled={busy || auth.isAuthenticated}
+      >
+        {t('authLogin')}
+      </button>
+      <button
+        type="button"
+        className={styles.controlButton}
+        onClick={auth.logout}
+        disabled={busy || !auth.isAuthenticated}
+      >
+        {t('authLogout')}
+      </button>
+      <button
+        type="button"
+        className={styles.controlButton}
+        onClick={() => void checkProtectedApi()}
+        disabled={protectedApiState === 'loading'}
+      >
+        {t('authProtectedCheck')}
+      </button>
+      <span className={statusClassName}>{protectedApiText}</span>
+      {auth.errorMessage ? (
+        <span className={styles.dangerText}>{auth.errorMessage}</span>
+      ) : null}
+    </section>
+  );
+}
+
 export function App() {
   const { t } = useTranslation();
   const [route, setRoute] = useState<'home' | 'training'>(() =>
@@ -206,6 +346,7 @@ export function App() {
             <UiPreferencesControls />
             <ThemeControls />
             <LanguageControls />
+            <AuthControls />
           </div>
         </div>
       </header>
@@ -216,6 +357,9 @@ export function App() {
             <h2 className={styles.sectionTitle}>{t('homeTitle')}</h2>
             <p>{t('homeBody')}</p>
             <p>{t('stateBoundaryNote')}</p>
+            <div className={styles.authPanel}>
+              <p className={styles.statusLine}>{t('authProtectedIdle')}</p>
+            </div>
           </section>
         ) : (
           <section className={styles.card}>

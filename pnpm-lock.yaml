@@ -63,6 +63,9 @@ importers:
 
   apps/api:
     dependencies:
+      '@live-software/contracts':
+        specifier: workspace:*
+        version: link:../../packages/contracts
       '@nestjs/common':
         specifier: 11.1.8
         version: 11.1.8(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -140,6 +143,9 @@ importers:
 
   apps/shell:
     dependencies:
+      '@live-software/auth':
+        specifier: workspace:*
+        version: link:../../packages/auth
       '@live-software/config':
         specifier: workspace:*
         version: link:../../packages/config
@@ -226,6 +232,12 @@ importers:
       typescript:
         specifier: ~5.9.2
         version: 5.9.3
+
+  packages/auth:
+    dependencies:
+      react:
+        specifier: ^19.0.0
+        version: 19.2.7
 
   packages/config:
     dependencies:

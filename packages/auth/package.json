@@ -1,0 +1,13 @@
+{
+  "name": "@live-software/auth",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "types": "./src/index.ts",
+  "dependencies": {
+    "react": "^19.0.0"
+  }
+}

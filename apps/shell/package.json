@@ -7,6 +7,7 @@
     "build": "rspack build --mode=production"
   },
   "dependencies": {
+    "@live-software/auth": "workspace:*",
     "@live-software/ui-kit": "workspace:*",
     "@live-software/config": "workspace:*",
     "@tanstack/react-query": "^5.0.0",

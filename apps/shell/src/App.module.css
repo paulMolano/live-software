@@ -89,6 +89,11 @@
   cursor: pointer;
 }
 
+.controlButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 .controlButtonActive {
   border-color: var(--mantine-color-teal-5);
   background: color-mix(in srgb, var(--mantine-color-teal-6), transparent 86%);
@@ -125,6 +130,24 @@
   border-radius: 10px;
   padding: 12px;
   background: color-mix(in srgb, var(--mantine-color-red-1), transparent 30%);
+}
+
+.authPanel {
+  margin-top: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.statusLine {
+  margin: 0;
+}
+
+.successText {
+  color: var(--mantine-color-teal-7);
+}
+
+.dangerText {
+  color: var(--mantine-color-red-7);
 }
 
 @media (max-width: 640px) {

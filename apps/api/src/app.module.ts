@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 
 import appConfig from './config/app.config.js';
 import { HealthModule } from './health/health.module.js';
+import { AuthModule } from './modules/auth/auth.module.js';
 import { TrainingModule } from './modules/training/training.module.js';
 import { DatabaseModule } from './shared/database/database.module.js';
 
@@ -15,6 +16,7 @@ import { DatabaseModule } from './shared/database/database.module.js';
 		}),
 		DatabaseModule,
 		HealthModule,
+		AuthModule,
 		TrainingModule,
 	],
 })

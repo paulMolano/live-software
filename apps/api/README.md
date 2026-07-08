@@ -21,12 +21,15 @@ Included in this issue:
 - persisted training exercise foundation;
 - localized `GET /api/training/exercises` endpoint;
 - localized `GET /api/training/exercises/:id` endpoint;
+- Keycloak JWT validation foundation;
+- protected `GET /api/auth/session` endpoint;
 - Nx build/typecheck/test targets.
 
 Intentionally deferred:
 
-- Keycloak;
-- JWT guards;
+- roles/permissions model;
+- user profile management;
+- long-lived browser sessions beyond same-tab reloads;
 - frontend training UI;
 - full exercise catalog import;
 - workout prescription/routine builder;
@@ -84,8 +87,41 @@ Those outcomes depend on future prescription data such as load, repetitions,
 sets, rest, volume and proximity to failure.
 
 Dashboard layouts, finance, learning, habits, Keycloak identity fields, JWT
-guards, and complex repositories are intentionally deferred to focused future
-issues.
+role policies, and complex repositories are intentionally deferred to focused
+future issues.
+
+## Auth setup
+
+Local Keycloak is provided by the root `docker-compose.yml`.
+
+Expected development assumptions:
+
+- Keycloak URL: `http://localhost:8080`
+- Realm: `live-software`
+- Shell public client: `live-software-shell`
+- Shell redirect URI: `http://localhost:8100/*`
+- Optional API audience: `live-software-api`
+
+Environment variables:
+
+```txt
+KEYCLOAK_URL=http://localhost:8080
+KEYCLOAK_REALM=live-software
+KEYCLOAK_API_AUDIENCE=live-software-api
+KEYCLOAK_CLOCK_SKEW_SECONDS=30
+CORS_ORIGIN=http://localhost:8100
+```
+
+`KEYCLOAK_API_AUDIENCE` is optional in the first foundation because Keycloak
+does not always include an API audience in access tokens until an audience
+mapper is configured.
+
+Protected session check:
+
+```sh
+curl http://localhost:3000/api/auth/session \
+  -H "Authorization: Bearer <access-token>"
+```
 
 ### Migrations
 
