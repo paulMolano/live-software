@@ -1,0 +1,314 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../apps/api/src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum SupportedLocale {
+  EN
+  ES
+}
+
+enum ExerciseDifficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum ExerciseMechanics {
+  COMPOUND
+  ISOLATION
+}
+
+enum MovementPattern {
+  SQUAT
+  HINGE
+  HORIZONTAL_PUSH
+  VERTICAL_PUSH
+  HORIZONTAL_PULL
+  VERTICAL_PULL
+  LUNGE
+  CARRY
+  ROTATION
+  ANTI_ROTATION
+  CORE
+  GAIT
+  OTHER
+}
+
+enum ExerciseLaterality {
+  BILATERAL
+  UNILATERAL
+  ALTERNATING
+  ASYMMETRICAL
+}
+
+enum KineticChain {
+  OPEN
+  CLOSED
+  MIXED
+}
+
+enum ResistanceCurve {
+  CONSTANT
+  ASCENDING
+  DESCENDING
+  VARIABLE
+  BODYWEIGHT_VARIABLE
+  UNKNOWN
+}
+
+enum DemandLevel {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum BodyRegion {
+  UPPER_BODY
+  LOWER_BODY
+  CORE
+  FULL_BODY
+}
+
+enum MuscleRole {
+  PRIMARY
+  SECONDARY
+  STABILIZER
+}
+
+enum StimulusLevel {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum EquipmentCategory {
+  BODYWEIGHT
+  FREE_WEIGHT
+  MACHINE
+  CABLE
+  BAND
+  SUPPORT
+  OTHER
+}
+
+enum EquipmentRequirement {
+  REQUIRED
+  OPTIONAL
+  ALTERNATIVE
+}
+
+enum ExerciseTipType {
+  SETUP
+  CUE
+  COMMON_MISTAKE
+  SAFETY
+  PROGRESSION
+}
+
+enum ExerciseMediaKind {
+  IMAGE
+  VIDEO
+  ANIMATION
+  OTHER
+}
+
+enum EvidenceSourceType {
+  PEER_REVIEWED_REVIEW
+  PEER_REVIEWED_STUDY
+  TEXTBOOK
+  PROFESSIONAL_GUIDELINE
+  CURATED_REFERENCE
+}
+
+/// Minimal ownership placeholder for future auth/user boundaries.
+/// Product-domain tables are intentionally deferred.
+model User {
+  id          String   @id @default(uuid()) @db.Uuid
+  email       String?  @unique
+  displayName String?  @map("display_name")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model Exercise {
+  id              String              @id @default(uuid()) @db.Uuid
+  slug            String              @unique
+  difficulty      ExerciseDifficulty
+  mechanics       ExerciseMechanics
+  movementPattern MovementPattern     @map("movement_pattern")
+  laterality      ExerciseLaterality
+  kineticChain    KineticChain        @map("kinetic_chain")
+  resistanceCurve ResistanceCurve     @map("resistance_curve")
+  technicalDemand DemandLevel         @map("technical_demand")
+  mobilityDemand  DemandLevel         @map("mobility_demand")
+  stabilityDemand DemandLevel         @map("stability_demand")
+  axialLoad       DemandLevel         @map("axial_load")
+  lumbarDemand    DemandLevel         @map("lumbar_demand")
+  shoulderDemand  DemandLevel         @map("shoulder_demand")
+  kneeDemand      DemandLevel         @map("knee_demand")
+  setupComplexity DemandLevel         @default(LOW) @map("setup_complexity")
+  spaceRequirement DemandLevel        @default(LOW) @map("space_requirement")
+  requiresSpotter Boolean             @default(false) @map("requires_spotter")
+  gymRequired     Boolean             @default(false) @map("gym_required")
+  homeFriendly    Boolean             @default(true) @map("home_friendly")
+  createdAt       DateTime            @default(now()) @map("created_at")
+  updatedAt       DateTime            @updatedAt @map("updated_at")
+  translations    ExerciseTranslation[]
+  muscles         ExerciseMuscle[]
+  equipment       ExerciseEquipment[]
+  tips            ExerciseTip[]
+  media           ExerciseMedia[]
+  references      ExerciseReference[]
+
+  @@map("exercises")
+}
+
+model ExerciseTranslation {
+  id          String          @id @default(uuid()) @db.Uuid
+  exerciseId  String          @map("exercise_id") @db.Uuid
+  locale      SupportedLocale
+  name        String
+  aliases     String[]        @default([])
+  summary     String
+  description String?
+  exercise    Exercise        @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+
+  @@unique([exerciseId, locale])
+  @@map("exercise_translations")
+}
+
+model MuscleGroup {
+  id           String                   @id @default(uuid()) @db.Uuid
+  slug         String                   @unique
+  region       BodyRegion
+  createdAt    DateTime                 @default(now()) @map("created_at")
+  updatedAt    DateTime                 @updatedAt @map("updated_at")
+  translations MuscleGroupTranslation[]
+  exercises    ExerciseMuscle[]
+
+  @@map("muscle_groups")
+}
+
+model MuscleGroupTranslation {
+  id            String          @id @default(uuid()) @db.Uuid
+  muscleGroupId String          @map("muscle_group_id") @db.Uuid
+  locale        SupportedLocale
+  name          String
+  muscleGroup   MuscleGroup     @relation(fields: [muscleGroupId], references: [id], onDelete: Cascade)
+
+  @@unique([muscleGroupId, locale])
+  @@map("muscle_group_translations")
+}
+
+model Equipment {
+  id           String                 @id @default(uuid()) @db.Uuid
+  slug         String                 @unique
+  category     EquipmentCategory
+  createdAt    DateTime               @default(now()) @map("created_at")
+  updatedAt    DateTime               @updatedAt @map("updated_at")
+  translations EquipmentTranslation[]
+  exercises    ExerciseEquipment[]
+
+  @@map("equipment")
+}
+
+model EquipmentTranslation {
+  id          String          @id @default(uuid()) @db.Uuid
+  equipmentId String          @map("equipment_id") @db.Uuid
+  locale      SupportedLocale
+  name        String
+  equipment   Equipment       @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+
+  @@unique([equipmentId, locale])
+  @@map("equipment_translations")
+}
+
+model ExerciseMuscle {
+  exerciseId    String        @map("exercise_id") @db.Uuid
+  muscleGroupId String        @map("muscle_group_id") @db.Uuid
+  role          MuscleRole
+  stimulusLevel StimulusLevel @map("stimulus_level")
+  notes         String?
+  exercise      Exercise      @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  muscleGroup   MuscleGroup   @relation(fields: [muscleGroupId], references: [id], onDelete: Cascade)
+
+  @@id([exerciseId, muscleGroupId])
+  @@map("exercise_muscles")
+}
+
+model ExerciseEquipment {
+  exerciseId  String               @map("exercise_id") @db.Uuid
+  equipmentId String               @map("equipment_id") @db.Uuid
+  requirement EquipmentRequirement
+  exercise    Exercise             @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  equipment   Equipment            @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+
+  @@id([exerciseId, equipmentId])
+  @@map("exercise_equipment")
+}
+
+model ExerciseTip {
+  id           String                   @id @default(uuid()) @db.Uuid
+  exerciseId   String                   @map("exercise_id") @db.Uuid
+  type         ExerciseTipType
+  sortOrder    Int                      @default(0) @map("sort_order")
+  exercise     Exercise                 @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  translations ExerciseTipTranslation[]
+
+  @@map("exercise_tips")
+}
+
+model ExerciseTipTranslation {
+  id        String          @id @default(uuid()) @db.Uuid
+  tipId     String          @map("tip_id") @db.Uuid
+  locale    SupportedLocale
+  text      String
+  tip       ExerciseTip     @relation(fields: [tipId], references: [id], onDelete: Cascade)
+
+  @@unique([tipId, locale])
+  @@map("exercise_tip_translations")
+}
+
+model ExerciseMedia {
+  id           String                     @id @default(uuid()) @db.Uuid
+  exerciseId   String                     @map("exercise_id") @db.Uuid
+  kind         ExerciseMediaKind
+  url          String?
+  sortOrder    Int                        @default(0) @map("sort_order")
+  exercise     Exercise                   @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  translations ExerciseMediaTranslation[]
+
+  @@map("exercise_media")
+}
+
+model ExerciseMediaTranslation {
+  id        String          @id @default(uuid()) @db.Uuid
+  mediaId   String          @map("media_id") @db.Uuid
+  locale    SupportedLocale
+  altText   String?         @map("alt_text")
+  media     ExerciseMedia   @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@unique([mediaId, locale])
+  @@map("exercise_media_translations")
+}
+
+model ExerciseReference {
+  id         String             @id @default(uuid()) @db.Uuid
+  exerciseId String             @map("exercise_id") @db.Uuid
+  sourceType EvidenceSourceType @map("source_type")
+  title      String
+  citation   String?
+  url        String?
+  notes      String?
+  sortOrder  Int                @default(0) @map("sort_order")
+  exercise   Exercise           @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+
+  @@map("exercise_references")
+}

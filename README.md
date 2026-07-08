@@ -181,13 +181,31 @@ Si el remote no está disponible, la shell renderiza fallback de error controlad
 
 ## Dependencias locales
 
-Para preparar la base de backend y autenticación sin integrarlas todavía:
+Para preparar la base de backend y autenticación local:
 
 ```bash
 docker compose up -d postgres keycloak
 ```
 
-Usa [`docker-compose.yml`](docker-compose.yml) y [.env.example](.env.example) como referencia de variables locales. Por ahora estos servicios no están conectados a la API ni a la shell.
+Usa [`docker-compose.yml`](docker-compose.yml) y [.env.example](.env.example) como referencia de variables locales.
+
+PostgreSQL queda conectado al backend mediante Prisma. La URL local por defecto
+es:
+
+```txt
+DATABASE_URL=postgresql://live_software:live_software@localhost:5432/live_software?schema=public
+```
+
+Comandos utiles:
+
+```bash
+pnpm prisma:validate
+pnpm prisma:generate
+pnpm prisma:migrate:dev --name descriptive_change_name
+```
+
+Keycloak sigue disponible como dependencia local futura, pero aun no esta
+integrado con la API.
 
 ## Roadmap
 

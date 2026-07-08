@@ -3,4 +3,4 @@
  *
  * Export only boundary types that are shared across apps, remotes, or backend modules.
  */
-export {};
+export * from './training/index.js';

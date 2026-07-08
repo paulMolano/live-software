@@ -8,15 +8,20 @@
     "lint": "nx run-many -t lint --all",
     "typecheck": "nx run-many -t typecheck --all",
     "build": "nx run-many -t build --all",
-    "test": "nx run api:test"
+    "test": "nx run api:test",
+    "prisma": "pnpm --filter @live-software/api prisma",
+    "prisma:validate": "pnpm --filter @live-software/api prisma:validate",
+    "prisma:generate": "pnpm --filter @live-software/api prisma:generate",
+    "prisma:migrate:dev": "pnpm --filter @live-software/api prisma:migrate:dev"
   },
   "devDependencies": {
     "@nx/react": "23.0.1",
-    "@rspack/cli": "^2.0.3",
-    "@rspack/core": "^2.0.3",
-    "@rspack/dev-server": "2.0.1",
+    "@rspack/cli": "catalog:",
+    "@rspack/core": "catalog:",
+    "@rspack/dev-server": "catalog:",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "dotenv": "16.4.7",
     "nx": "23.0.1",
     "typescript": "6.0.3"
   },

@@ -1,0 +1,15 @@
+import 'dotenv/config';
+
+import { defineConfig } from 'prisma/config';
+
+const localDatabaseUrl = 'postgresql://live_software:live_software@localhost:5432/live_software?schema=public';
+
+export default defineConfig({
+	schema: 'prisma/schema.prisma',
+	migrations: {
+		path: 'prisma/migrations',
+	},
+	datasource: {
+		url: process.env['DATABASE_URL'] ?? localDatabaseUrl,
+	},
+});

@@ -7,6 +7,15 @@ confirmModulesPurge: false
 savePrefix: ""
 strictPeerDependencies: true
 
+catalog:
+  "@rspack/cli": "2.0.3"
+  "@rspack/core": "2.0.3"
+  "@rspack/dev-server": "2.0.1"
+
 allowBuilds:
+  "@nestjs/core": true
+  "@prisma/engines": true
+  esbuild: true
   nx: true
+  prisma: true
   sharp: true

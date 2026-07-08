@@ -21,9 +21,9 @@
     "zustand": "^5.0.0"
   },
   "devDependencies": {
-    "@rspack/cli": "^2.0.3",
-    "@rspack/core": "^2.0.3",
-    "@rspack/dev-server": "2.0.1",
+    "@rspack/cli": "catalog:",
+    "@rspack/core": "catalog:",
+    "@rspack/dev-server": "catalog:",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "typescript": "~5.9.2"

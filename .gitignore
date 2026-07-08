@@ -17,6 +17,9 @@ out/
 # TypeScript incremental build info
 *.tsbuildinfo
 
+# Generated Prisma Client
+apps/api/src/generated/prisma/
+
 # Test and coverage output
 coverage/
 *.tsbuildinfo
