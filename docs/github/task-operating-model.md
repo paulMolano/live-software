@@ -13,7 +13,7 @@ live-software
 Create one GitHub Project:
 
 ```txt
-Software Vida Roadmap
+Live Software Roadmap
 ```
 
 The Project field model is documented in
@@ -24,6 +24,9 @@ should be split before Codex works on it.
 The concrete Project configuration, starter epics, sub-issues and view filters
 are documented in
 [`docs/github/project-operating-model.md`](project-operating-model.md).
+
+Use [`docs/playbooks/refine-issue.md`](../playbooks/refine-issue.md) to turn
+rough ideas or epics into Codex-ready issues.
 
 ## Views
 
@@ -85,8 +88,34 @@ Every implementation issue should include:
 
 ## Files likely affected
 
+## Project fields
+
+- Status:
+- Track:
+- Work type:
+- Size:
+- Codex ready:
+- Guide update:
+
 ## Risks
+
+## PR expectations
 ```
+
+If `Guide update` is `Required`, the issue should name the expected docs or
+guide area when known.
+
+## Codex readiness rules
+
+Codex may execute an issue only when:
+
+- `Work type` is not `Epic`
+- `Size` is not `XL`
+- `Codex ready` is `Ready`
+- scope, acceptance criteria and validation are clear
+
+If an issue fails any of these checks, Codex should stop and propose a split or
+refinement instead of implementing.
 
 ## First issues to create manually
 
@@ -104,17 +133,19 @@ Every implementation issue should include:
 ## Codex prompt for an issue
 
 ```txt
-Read AGENTS.md, PLANS.md and the linked issue.
+Read AGENTS.md, PLANS.md, docs/github/project-fields.md and the linked issue.
 
 Do not implement immediately.
 
 First:
 1. summarize the issue
-2. inspect the relevant files
-3. propose a plan
-4. list files you expect to touch
-5. list validation commands
-6. identify risks
+2. read the Project fields if available
+3. confirm whether Work type, Size and Codex ready allow execution
+4. inspect the relevant files
+5. propose a plan
+6. list files you expect to touch
+7. list validation commands
+8. identify risks
 
 Wait for approval before implementation if the change is architectural or touches multiple apps/packages.
 ```

@@ -13,7 +13,14 @@ No se busca solo velocidad: cada cambio debe aportar valor de producto o de apre
 
 ## Estado actual
 
-Este repositorio contiene por ahora solo el **seed** del proyecto: documentación, reglas, ADRs, skills y playbooks para que los agentes arranquen con dirección clara. Todavía no existe código de aplicación (no hay `apps/` ni `packages/`); la estructura objetivo está descrita en [docs/architecture/system-overview.md](docs/architecture/system-overview.md).
+El repo ya tiene estructura Nx activa con aplicaciones iniciales y paquetes compartidos.
+
+- `apps/shell` (host/consumer frontend)
+- `apps/training-mfe` (primer remote/provider frontend)
+- `apps/api` (backend NestJS base)
+- `apps/guide` (documentación web)
+
+La shell y `training-mfe` están conectados por Module Federation runtime para validar arquitectura host/remote con fallback.
 
 ## Objetivo de producto
 
@@ -137,6 +144,50 @@ No se producen cambios enormes de una vez. Detalle completo en [AGENTS.md](AGENT
 - [pnpm](https://pnpm.io/) — versión fijada en `packageManager` dentro de [`package.json`](package.json) (`pnpm@11.7.0`); workspaces definidos en [`pnpm-workspace.yaml`](pnpm-workspace.yaml).
 - [Nx](https://nx.dev/) — gestor del monorepo, instalado como dependencia de desarrollo.
 - Node.js — versión aún no fijada en este seed.
+
+## Ejecutar shell + training-mfe en local
+
+1. Instalar dependencias:
+
+```bash
+pnpm install --frozen-lockfile
+```
+
+2. Levantar la shell:
+
+```bash
+pnpm nx serve shell
+```
+
+3. En otra terminal, levantar el remote:
+
+```bash
+pnpm --filter training-mfe dev
+```
+
+4. Abrir:
+
+- `http://localhost:8100/#/` para la shell.
+- `http://localhost:8100/#/training` para cargar el remote.
+
+### Contrato Module Federation actual
+
+- Consumer/host: `apps/shell`.
+- Provider/remote: `apps/training-mfe`.
+- URL remote entry: `http://localhost:8101/remoteEntry.js`.
+- Exposed module recomendado para shell: `training-mfe/RemoteEntry`.
+
+Si el remote no está disponible, la shell renderiza fallback de error controlado en la ruta de training en lugar de dejar la pantalla en blanco.
+
+## Dependencias locales
+
+Para preparar la base de backend y autenticación sin integrarlas todavía:
+
+```bash
+docker compose up -d postgres keycloak
+```
+
+Usa [`docker-compose.yml`](docker-compose.yml) y [.env.example](.env.example) como referencia de variables locales. Por ahora estos servicios no están conectados a la API ni a la shell.
 
 ## Roadmap
 

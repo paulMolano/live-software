@@ -24,6 +24,12 @@ Usar para:
 
 No usar para datos del backend.
 
+### Ejemplos iniciales
+
+- sidebar open/closed.
+- dashboard layout placeholder.
+- preferencias de UI persistidas.
+
 ## TanStack Query
 
 Usar para:
@@ -36,6 +42,21 @@ Usar para:
 - optimistic updates;
 - retries;
 - staleTime/gcTime.
+
+### Convención inicial de query keys
+
+- `['app']` como raíz compartida.
+- `['app', 'shell']` para estado y queries de shell.
+- `['app', 'training']` para queries del dominio training.
+- Queries concretas debajo de su dominio, por ejemplo `['app', 'training', 'exercises', trainingId]`.
+
+### Defaults iniciales
+
+- `staleTime`: 60s.
+- `gcTime`: 5m.
+- `retry`: 1 en queries.
+- `retry`: 0 en mutations.
+- `refetchOnWindowFocus`: false.
 
 ## No Redux
 

@@ -1,0 +1,134 @@
+.page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 10% 0%, color-mix(in srgb, var(--mantine-color-teal-1), transparent 45%) 0, transparent 50%),
+    linear-gradient(180deg, var(--mantine-color-body) 0%, color-mix(in srgb, var(--mantine-color-body), #000 4%) 100%);
+  color: var(--mantine-color-text);
+}
+
+.skipLink {
+  position: absolute;
+  top: -40px;
+  left: 12px;
+  background: var(--mantine-color-teal-filled);
+  color: var(--mantine-color-white);
+  padding: 8px 12px;
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.skipLink:focus-visible {
+  top: 12px;
+}
+
+.header {
+  border-bottom: 1px solid var(--mantine-color-default-border);
+  backdrop-filter: blur(6px);
+}
+
+.headerInner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.nav {
+  display: flex;
+  gap: 12px;
+}
+
+.navLink {
+  color: var(--mantine-color-text);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.navLink:hover {
+  border-color: var(--mantine-color-default-border);
+}
+
+.navLink:focus-visible,
+.controlButton:focus-visible,
+.controlSelect:focus-visible {
+  outline: 2px solid var(--mantine-color-teal-filled);
+  outline-offset: 2px;
+}
+
+.navLinkActive {
+  background: color-mix(in srgb, var(--mantine-color-teal-6), transparent 85%);
+  border-color: color-mix(in srgb, var(--mantine-color-teal-6), transparent 70%);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.controlGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.controlLabel {
+  font-weight: 600;
+}
+
+.controlButton {
+  border: 1px solid var(--mantine-color-default-border);
+  background: var(--mantine-color-body);
+  color: var(--mantine-color-text);
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.controlButtonActive {
+  border-color: var(--mantine-color-teal-5);
+  background: color-mix(in srgb, var(--mantine-color-teal-6), transparent 86%);
+}
+
+.controlSelect {
+  border: 1px solid var(--mantine-color-default-border);
+  background: var(--mantine-color-body);
+  color: var(--mantine-color-text);
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+.main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+.card {
+  border: 1px solid var(--mantine-color-default-border);
+  border-radius: 12px;
+  padding: 20px;
+  background: color-mix(in srgb, var(--mantine-color-body), #fff 2%);
+}
+
+.sectionTitle {
+  margin: 0;
+}
+
+.alert {
+  margin-top: 14px;
+  border: 1px solid var(--mantine-color-red-4);
+  border-radius: 10px;
+  padding: 12px;
+  background: color-mix(in srgb, var(--mantine-color-red-1), transparent 30%);
+}
+
+@media (max-width: 640px) {
+  .headerInner {
+    padding-top: 20px;
+  }
+}

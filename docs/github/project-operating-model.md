@@ -77,8 +77,10 @@ child issue to the Project with its own fields.
 | Research spikes and decision log | `[SPIKE] Compare free analytics and observability options` | `Spike` | `M` | `Ready` | `Required` |
 | Research spikes and decision log | `[SPIKE] Validate service worker strategy timing` | `Spike` | `S` | `Ready` | `Required` |
 
-Before moving a child issue to `Ready`, ensure its body includes the issue
-template sections from [`task-operating-model.md`](task-operating-model.md).
+Before moving a child issue to `Ready`, refine it with
+[`../playbooks/refine-issue.md`](../playbooks/refine-issue.md) and ensure its
+body includes the issue template sections from
+[`task-operating-model.md`](task-operating-model.md).
 
 ## Required Views
 

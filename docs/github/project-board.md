@@ -2,7 +2,7 @@
 
 ## Name
 
-Software Vida Roadmap
+Live Software Roadmap
 
 ## Purpose
 
@@ -25,24 +25,10 @@ classification rules and Codex execution rules.
 ## Required Views
 
 - Backlog
-- Sprint actual
-- Arquitectura
-- Frontend
-- Backend
-- Learning
+- Ready
+- In Progress
 - Review
 - Done
-
-## Campos
-
-- Status
-- Type
-- Area
-- Phase
-- Priority
-- Learning goal
-- Estimate
-- Owner
 - Epics
 - Needs refinement
 - Guide required

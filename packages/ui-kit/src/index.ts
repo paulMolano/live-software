@@ -3,4 +3,4 @@
  *
  * Keep this package generic. Domain-specific components belong in their owning app or remote.
  */
-export {};
+export { liveSoftwareTheme } from './theme';
