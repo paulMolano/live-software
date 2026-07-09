@@ -79,8 +79,10 @@ The shell mounts only public wrapped entrypoints:
 Each public MFE entrypoint wraps itself in its domain provider. This keeps shell composition clean:
 
 ```tsx
-<TrainingDashboardWidget />
-<FinanceDashboardWidget />
+<>
+  <TrainingDashboardWidget />
+  <FinanceDashboardWidget />
+</>
 ```
 
 The shell must not do this:

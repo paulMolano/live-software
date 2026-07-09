@@ -26,8 +26,10 @@
     "@typescript-eslint/parser": "^8.46.1",
     "dotenv": "16.4.7",
     "eslint": "^8.57.1",
+    "eslint-plugin-markdown": "^3.0.1",
     "nx": "23.0.1",
-    "typescript": "6.0.3"
+    "typescript": "catalog:",
+    "vite": "catalog:"
   },
   "dependencies": {
     "@module-federation/enhanced": "catalog:",

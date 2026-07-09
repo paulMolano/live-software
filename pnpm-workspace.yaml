@@ -19,6 +19,8 @@ catalog:
   "@types/react-dom": "19.2.3"
   react: "19.2.7"
   react-dom: "19.2.7"
+  typescript: "5.9.2"
+  vite: "6.3.5"
   zustand: "5.0.14"
 
 allowBuilds:

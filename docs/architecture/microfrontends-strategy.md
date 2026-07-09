@@ -53,3 +53,11 @@ No porque sea siempre la mejor opción, sino porque es la mejor para este objeti
 - Error boundary por remote.
 - Fallback visible.
 - Métrica de carga por remote.
+
+## Evolucion de aprendizaje
+
+El objetivo inicial sigue siendo monorepo por velocidad de aprendizaje y bajo costo operativo.
+
+Tambien se documenta la evolucion a modelo hibrido (monorepo + remote externo) para aprender versionado y operacion distribuida sin perder control:
+
+- [Hybrid MFE Repositories Strategy](./hybrid-mfe-repositories-strategy.md)

@@ -5,9 +5,14 @@ module.exports = {
     '**/node_modules/**',
     '**/.next/**',
     'apps/shell/@mf-types/**',
+    '**/*.md/*',
   ],
-  plugins: ['@nx', '@typescript-eslint'],
+  plugins: ['@nx', '@typescript-eslint', 'markdown'],
   overrides: [
+    {
+      files: ['**/*.md'],
+      processor: 'markdown/markdown',
+    },
     {
       files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
       parser: '@typescript-eslint/parser',
