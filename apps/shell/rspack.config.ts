@@ -12,6 +12,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = 8100;
 const NAME = 'shell';
 
+const shared = {
+  react: { singleton: true },
+  'react-dom': { singleton: true },
+  '@tanstack/react-query': { singleton: true },
+  zustand: { singleton: true },
+  '@live-software/contracts': { singleton: true },
+};
+
 // Read mode from the rspack CLI arg (`--mode=development|production`) so the
 // config works the same on Windows + POSIX without depending on a shell
 // `NODE_ENV=...` prefix.
@@ -27,7 +35,13 @@ export default defineConfig((_env, argv) => {
       clean: true,
     },
     devServer: { port: PORT, historyApiFallback: true, hot: true },
-    resolve: { extensions: ['...', '.ts', '.tsx', '.jsx'] },
+    resolve: {
+      extensions: ['...', '.ts', '.tsx', '.jsx'],
+      extensionAlias: {
+        '.js': ['.ts', '.js'],
+        '.jsx': ['.tsx', '.jsx'],
+      },
+    },
     experiments: {
       css: true,
     },
@@ -64,7 +78,7 @@ export default defineConfig((_env, argv) => {
         name: NAME,
         // No build-time `remotes:` block - registered at runtime in
         // src/mf.ts at module load time.
-        shared: ['react', 'react-dom'],
+        shared,
       }),
     ],
   };

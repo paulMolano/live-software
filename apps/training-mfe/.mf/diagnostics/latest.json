@@ -1,0 +1,10 @@
+{
+  "latestErrorEvent": {
+    "code": "TYPE-001",
+    "message": "Failed to generate type declaration. Execute the below cmd to reproduce and fix the error. #TYPE-001\nargs: {\"cmd\":\"npx tsc --project C:\\\\Users\\\\MolanoP\\\\Downloads\\\\software-vida-project-seed-v02\\\\software-vida-project-seed-v02\\\\apps\\\\training-mfe\\\\node_modules\\\\.federation\\\\tsconfig.089ca5eb05c9de7811733c620d8b5eee.json\"}\nView the docs to see how to solve: https://module-federation.io/guide/troubleshooting/type#type-001",
+    "args": {
+      "cmd": "npx tsc --project C:\\Users\\MolanoP\\Downloads\\software-vida-project-seed-v02\\software-vida-project-seed-v02\\apps\\training-mfe\\node_modules\\.federation\\tsconfig.089ca5eb05c9de7811733c620d8b5eee.json"
+    },
+    "timestamp": 1783582319734
+  }
+}

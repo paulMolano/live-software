@@ -35,7 +35,7 @@ importers:
     devDependencies:
       '@nx/react':
         specifier: 23.0.1
-        version: 23.0.1(@babel/core@7.29.7)(@babel/traverse@7.29.7)(@module-federation/enhanced@2.6.0(@rspack/core@2.0.3(@module-federation/runtime-tools@2.6.0)(@swc/helpers@0.5.15))(typescript@6.0.3)(webpack@5.105.2))(@swc/helpers@0.5.15)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)
+        version: 23.0.1(@babel/core@7.29.7)(@babel/traverse@7.29.7)(@module-federation/enhanced@2.6.0(@rspack/core@2.0.3(@module-federation/runtime-tools@2.6.0)(@swc/helpers@0.5.15))(typescript@6.0.3)(webpack@5.105.2))(@swc/helpers@0.5.15)(@zkochan/js-yaml@0.0.7)(nx@23.0.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)
       '@rspack/cli':
         specifier: 'catalog:'
         version: 2.0.3(@rspack/core@2.0.3(@module-federation/runtime-tools@2.6.0)(@swc/helpers@0.5.15))(@rspack/dev-server@2.0.1(@rspack/core@2.0.3(@module-federation/runtime-tools@2.6.0)(@swc/helpers@0.5.15)))
@@ -56,7 +56,7 @@ importers:
         version: 16.4.7
       nx:
         specifier: 23.0.1
-        version: 23.0.1(debug@4.4.3)
+        version: 23.0.1
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -104,6 +104,46 @@ importers:
         specifier: 4.20.6
         version: 4.20.6
 
+  apps/finance-mfe:
+    dependencies:
+      '@live-software/contracts':
+        specifier: workspace:*
+        version: link:../../packages/contracts
+      '@module-federation/enhanced':
+        specifier: ^2.4.0
+        version: 2.6.0(@rspack/core@2.0.3(@module-federation/runtime-tools@2.6.0)(@swc/helpers@0.5.15))(typescript@5.9.3)(webpack@5.105.2)
+      '@tanstack/react-query':
+        specifier: ^5.0.0
+        version: 5.101.2(react@19.2.7)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.7
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.7(react@19.2.7)
+      zustand:
+        specifier: ^5.0.0
+        version: 5.0.14(@types/react@19.2.17)(react@19.2.7)(use-sync-external-store@1.6.0(react@19.2.7))
+    devDependencies:
+      '@rspack/cli':
+        specifier: 'catalog:'
+        version: 2.0.3(@rspack/core@2.0.3(@module-federation/runtime-tools@2.6.0)(@swc/helpers@0.5.15))(@rspack/dev-server@2.0.1(@rspack/core@2.0.3(@module-federation/runtime-tools@2.6.0)(@swc/helpers@0.5.15)))
+      '@rspack/core':
+        specifier: 'catalog:'
+        version: 2.0.3(@module-federation/runtime-tools@2.6.0)(@swc/helpers@0.5.15)
+      '@rspack/dev-server':
+        specifier: 'catalog:'
+        version: 2.0.1(@rspack/core@2.0.3(@module-federation/runtime-tools@2.6.0)(@swc/helpers@0.5.15))
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.17
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.17)
+      typescript:
+        specifier: ~5.9.2
+        version: 5.9.3
+
   apps/guide:
     dependencies:
       '@mantine/core':
@@ -149,6 +189,9 @@ importers:
       '@live-software/config':
         specifier: workspace:*
         version: link:../../packages/config
+      '@live-software/contracts':
+        specifier: workspace:*
+        version: link:../../packages/contracts
       '@live-software/ui-kit':
         specifier: workspace:*
         version: link:../../packages/ui-kit
@@ -204,15 +247,24 @@ importers:
 
   apps/training-mfe:
     dependencies:
+      '@live-software/contracts':
+        specifier: workspace:*
+        version: link:../../packages/contracts
       '@module-federation/enhanced':
         specifier: ^2.4.0
         version: 2.6.0(@rspack/core@2.0.3(@module-federation/runtime-tools@2.6.0)(@swc/helpers@0.5.15))(typescript@5.9.3)(webpack@5.105.2)
+      '@tanstack/react-query':
+        specifier: ^5.0.0
+        version: 5.101.2(react@19.2.7)
       react:
         specifier: ^19.0.0
         version: 19.2.7
       react-dom:
         specifier: ^19.0.0
         version: 19.2.7(react@19.2.7)
+      zustand:
+        specifier: ^5.0.0
+        version: 5.0.14(@types/react@19.2.17)(react@19.2.7)(use-sync-external-store@1.6.0(react@19.2.7))
     devDependencies:
       '@rspack/cli':
         specifier: 'catalog:'
@@ -5819,21 +5871,21 @@ snapshots:
     dependencies:
       consola: 3.4.2
 
-  '@nx/devkit@23.0.1(nx@23.0.1(debug@4.4.3))':
+  '@nx/devkit@23.0.1(nx@23.0.1)':
     dependencies:
       '@zkochan/js-yaml': 0.0.7
       ejs: 5.0.1
       enquirer: 2.3.6
       minimatch: 10.2.5
-      nx: 23.0.1(debug@4.4.3)
+      nx: 23.0.1
       semver: 7.7.4
       tslib: 2.8.1
       yargs-parser: 21.1.1
 
-  '@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3))':
+  '@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1)':
     dependencies:
-      '@nx/devkit': 23.0.1(nx@23.0.1(debug@4.4.3))
-      '@nx/js': 23.0.1(@babel/traverse@7.29.7)(nx@23.0.1(debug@4.4.3))
+      '@nx/devkit': 23.0.1(nx@23.0.1)
+      '@nx/js': 23.0.1(@babel/traverse@7.29.7)(nx@23.0.1)
       semver: 7.7.4
       tslib: 2.8.1
       typescript: 5.9.3
@@ -5849,7 +5901,7 @@ snapshots:
       - supports-color
       - verdaccio
 
-  '@nx/js@23.0.1(@babel/traverse@7.29.7)(nx@23.0.1(debug@4.4.3))':
+  '@nx/js@23.0.1(@babel/traverse@7.29.7)(nx@23.0.1)':
     dependencies:
       '@babel/core': 7.29.7
       '@babel/plugin-proposal-decorators': 7.29.7(@babel/core@7.29.7)
@@ -5858,7 +5910,7 @@ snapshots:
       '@babel/preset-env': 7.29.7(@babel/core@7.29.7)
       '@babel/preset-typescript': 7.29.7(@babel/core@7.29.7)
       '@babel/runtime': 7.29.7
-      '@nx/devkit': 23.0.1(nx@23.0.1(debug@4.4.3))
+      '@nx/devkit': 23.0.1(nx@23.0.1)
       '@nx/workspace': 23.0.1
       '@zkochan/js-yaml': 0.0.7
       babel-plugin-const-enum: 1.2.0(@babel/core@7.29.7)
@@ -5885,11 +5937,11 @@ snapshots:
       - nx
       - supports-color
 
-  '@nx/module-federation@23.0.1(@babel/traverse@7.29.7)(@module-federation/enhanced@2.6.0(@rspack/core@2.0.3(@module-federation/runtime-tools@2.6.0)(@swc/helpers@0.5.15))(typescript@6.0.3)(webpack@5.105.2))(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3)))(@nx/vite@23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3)))(nx@23.0.1(debug@4.4.3))(typescript@6.0.3))(@swc/helpers@0.5.15)(nx@23.0.1(debug@4.4.3))':
+  '@nx/module-federation@23.0.1(@babel/traverse@7.29.7)(@module-federation/enhanced@2.6.0(@rspack/core@2.0.3(@module-federation/runtime-tools@2.6.0)(@swc/helpers@0.5.15))(typescript@6.0.3)(webpack@5.105.2))(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1))(@nx/vite@23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1))(nx@23.0.1)(typescript@6.0.3))(@swc/helpers@0.5.15)(nx@23.0.1)':
     dependencies:
-      '@nx/devkit': 23.0.1(nx@23.0.1(debug@4.4.3))
-      '@nx/js': 23.0.1(@babel/traverse@7.29.7)(nx@23.0.1(debug@4.4.3))
-      '@nx/web': 23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3)))(@nx/vite@23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3)))(nx@23.0.1(debug@4.4.3))(typescript@6.0.3))(nx@23.0.1(debug@4.4.3))
+      '@nx/devkit': 23.0.1(nx@23.0.1)
+      '@nx/js': 23.0.1(@babel/traverse@7.29.7)(nx@23.0.1)
+      '@nx/web': 23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1))(@nx/vite@23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1))(nx@23.0.1)(typescript@6.0.3))(nx@23.0.1)
       '@rspack/core': 1.6.8(@swc/helpers@0.5.15)
       express: 4.22.2
       http-proxy-middleware: 3.0.7
@@ -5957,14 +6009,14 @@ snapshots:
   '@nx/nx-win32-x64-msvc@23.0.1':
     optional: true
 
-  '@nx/react@23.0.1(@babel/core@7.29.7)(@babel/traverse@7.29.7)(@module-federation/enhanced@2.6.0(@rspack/core@2.0.3(@module-federation/runtime-tools@2.6.0)(@swc/helpers@0.5.15))(typescript@6.0.3)(webpack@5.105.2))(@swc/helpers@0.5.15)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3))(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)':
+  '@nx/react@23.0.1(@babel/core@7.29.7)(@babel/traverse@7.29.7)(@module-federation/enhanced@2.6.0(@rspack/core@2.0.3(@module-federation/runtime-tools@2.6.0)(@swc/helpers@0.5.15))(typescript@6.0.3)(webpack@5.105.2))(@swc/helpers@0.5.15)(@zkochan/js-yaml@0.0.7)(nx@23.0.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(typescript@6.0.3)':
     dependencies:
-      '@nx/devkit': 23.0.1(nx@23.0.1(debug@4.4.3))
-      '@nx/eslint': 23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3))
-      '@nx/js': 23.0.1(@babel/traverse@7.29.7)(nx@23.0.1(debug@4.4.3))
-      '@nx/module-federation': 23.0.1(@babel/traverse@7.29.7)(@module-federation/enhanced@2.6.0(@rspack/core@2.0.3(@module-federation/runtime-tools@2.6.0)(@swc/helpers@0.5.15))(typescript@6.0.3)(webpack@5.105.2))(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3)))(@nx/vite@23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3)))(nx@23.0.1(debug@4.4.3))(typescript@6.0.3))(@swc/helpers@0.5.15)(nx@23.0.1(debug@4.4.3))
-      '@nx/rollup': 23.0.1(@babel/core@7.29.7)(@babel/traverse@7.29.7)(nx@23.0.1(debug@4.4.3))(typescript@6.0.3)
-      '@nx/web': 23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3)))(@nx/vite@23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3)))(nx@23.0.1(debug@4.4.3))(typescript@6.0.3))(nx@23.0.1(debug@4.4.3))
+      '@nx/devkit': 23.0.1(nx@23.0.1)
+      '@nx/eslint': 23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1)
+      '@nx/js': 23.0.1(@babel/traverse@7.29.7)(nx@23.0.1)
+      '@nx/module-federation': 23.0.1(@babel/traverse@7.29.7)(@module-federation/enhanced@2.6.0(@rspack/core@2.0.3(@module-federation/runtime-tools@2.6.0)(@swc/helpers@0.5.15))(typescript@6.0.3)(webpack@5.105.2))(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1))(@nx/vite@23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1))(nx@23.0.1)(typescript@6.0.3))(@swc/helpers@0.5.15)(nx@23.0.1)
+      '@nx/rollup': 23.0.1(@babel/core@7.29.7)(@babel/traverse@7.29.7)(nx@23.0.1)(typescript@6.0.3)
+      '@nx/web': 23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1))(@nx/vite@23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1))(nx@23.0.1)(typescript@6.0.3))(nx@23.0.1)
       '@phenomnomnominal/tsquery': 6.2.0(typescript@6.0.3)
       '@svgr/webpack': 8.1.0(typescript@6.0.3)
       express: 4.22.2
@@ -5975,7 +6027,7 @@ snapshots:
       semver: 7.7.4
       tslib: 2.8.1
     optionalDependencies:
-      '@nx/vite': 23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3)))(nx@23.0.1(debug@4.4.3))(typescript@6.0.3)
+      '@nx/vite': 23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1))(nx@23.0.1)(typescript@6.0.3)
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/traverse'
@@ -6013,10 +6065,10 @@ snapshots:
       - vitest
       - webpack-cli
 
-  '@nx/rollup@23.0.1(@babel/core@7.29.7)(@babel/traverse@7.29.7)(nx@23.0.1(debug@4.4.3))(typescript@6.0.3)':
+  '@nx/rollup@23.0.1(@babel/core@7.29.7)(@babel/traverse@7.29.7)(nx@23.0.1)(typescript@6.0.3)':
     dependencies:
-      '@nx/devkit': 23.0.1(nx@23.0.1(debug@4.4.3))
-      '@nx/js': 23.0.1(@babel/traverse@7.29.7)(nx@23.0.1(debug@4.4.3))
+      '@nx/devkit': 23.0.1(nx@23.0.1)
+      '@nx/js': 23.0.1(@babel/traverse@7.29.7)(nx@23.0.1)
       '@phenomnomnominal/tsquery': 6.2.0(typescript@6.0.3)
       '@rollup/plugin-babel': 6.1.0(@babel/core@7.29.7)
       '@rollup/plugin-commonjs': 25.0.8
@@ -6044,11 +6096,11 @@ snapshots:
       - typescript
       - verdaccio
 
-  '@nx/vite@23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3)))(nx@23.0.1(debug@4.4.3))(typescript@6.0.3)':
+  '@nx/vite@23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1))(nx@23.0.1)(typescript@6.0.3)':
     dependencies:
-      '@nx/devkit': 23.0.1(nx@23.0.1(debug@4.4.3))
-      '@nx/js': 23.0.1(@babel/traverse@7.29.7)(nx@23.0.1(debug@4.4.3))
-      '@nx/vitest': 23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3)))(nx@23.0.1(debug@4.4.3))(typescript@6.0.3)
+      '@nx/devkit': 23.0.1(nx@23.0.1)
+      '@nx/js': 23.0.1(@babel/traverse@7.29.7)(nx@23.0.1)
+      '@nx/vitest': 23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1))(nx@23.0.1)(typescript@6.0.3)
       '@phenomnomnominal/tsquery': 6.2.0(typescript@6.0.3)
       ajv: 8.20.0
       enquirer: 2.3.6
@@ -6070,15 +6122,15 @@ snapshots:
       - vitest
     optional: true
 
-  '@nx/vitest@23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3)))(nx@23.0.1(debug@4.4.3))(typescript@6.0.3)':
+  '@nx/vitest@23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1))(nx@23.0.1)(typescript@6.0.3)':
     dependencies:
-      '@nx/devkit': 23.0.1(nx@23.0.1(debug@4.4.3))
-      '@nx/js': 23.0.1(@babel/traverse@7.29.7)(nx@23.0.1(debug@4.4.3))
+      '@nx/devkit': 23.0.1(nx@23.0.1)
+      '@nx/js': 23.0.1(@babel/traverse@7.29.7)(nx@23.0.1)
       '@phenomnomnominal/tsquery': 6.2.0(typescript@6.0.3)
       semver: 7.7.4
       tslib: 2.8.1
     optionalDependencies:
-      '@nx/eslint': 23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3))
+      '@nx/eslint': 23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1)
     transitivePeerDependencies:
       - '@babel/traverse'
       - '@swc-node/register'
@@ -6091,17 +6143,17 @@ snapshots:
       - verdaccio
     optional: true
 
-  '@nx/web@23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3)))(@nx/vite@23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3)))(nx@23.0.1(debug@4.4.3))(typescript@6.0.3))(nx@23.0.1(debug@4.4.3))':
+  '@nx/web@23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1))(@nx/vite@23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1))(nx@23.0.1)(typescript@6.0.3))(nx@23.0.1)':
     dependencies:
-      '@nx/devkit': 23.0.1(nx@23.0.1(debug@4.4.3))
-      '@nx/js': 23.0.1(@babel/traverse@7.29.7)(nx@23.0.1(debug@4.4.3))
+      '@nx/devkit': 23.0.1(nx@23.0.1)
+      '@nx/js': 23.0.1(@babel/traverse@7.29.7)(nx@23.0.1)
       detect-port: 2.1.0
       http-server: 14.1.1
       picocolors: 1.1.1
       tslib: 2.8.1
     optionalDependencies:
-      '@nx/eslint': 23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3))
-      '@nx/vite': 23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1(debug@4.4.3)))(nx@23.0.1(debug@4.4.3))(typescript@6.0.3)
+      '@nx/eslint': 23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1)
+      '@nx/vite': 23.0.1(@babel/traverse@7.29.7)(@nx/eslint@23.0.1(@babel/traverse@7.29.7)(@zkochan/js-yaml@0.0.7)(nx@23.0.1))(nx@23.0.1)(typescript@6.0.3)
     transitivePeerDependencies:
       - '@babel/traverse'
       - '@swc-node/register'
@@ -6114,11 +6166,11 @@ snapshots:
 
   '@nx/workspace@23.0.1':
     dependencies:
-      '@nx/devkit': 23.0.1(nx@23.0.1(debug@4.4.3))
+      '@nx/devkit': 23.0.1(nx@23.0.1)
       '@zkochan/js-yaml': 0.0.7
       chalk: 4.1.2
       enquirer: 2.3.6
-      nx: 23.0.1(debug@4.4.3)
+      nx: 23.0.1
       picomatch: 4.0.4
       semver: 7.7.4
       tslib: 2.8.1
@@ -6783,7 +6835,7 @@ snapshots:
 
   aws-ssl-profiles@1.1.2: {}
 
-  axios@1.16.0(debug@4.4.3):
+  axios@1.16.0:
     dependencies:
       follow-redirects: 1.16.0(debug@4.4.3)
       form-data: 4.0.6
@@ -7933,7 +7985,7 @@ snapshots:
     dependencies:
       boolbase: 1.0.0
 
-  nx@23.0.1(debug@4.4.3):
+  nx@23.0.1:
     dependencies:
       '@emnapi/core': 1.4.5
       '@emnapi/runtime': 1.4.5
@@ -7948,7 +8000,7 @@ snapshots:
       ansi-styles: 4.3.0
       argparse: 2.0.1
       asynckit: 0.4.0
-      axios: 1.16.0(debug@4.4.3)
+      axios: 1.16.0
       balanced-match: 4.0.3
       base64-js: 1.5.1
       bl: 4.1.0

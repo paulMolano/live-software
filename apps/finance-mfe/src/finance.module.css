@@ -1,0 +1,218 @@
+.page {
+  display: grid;
+  gap: 18px;
+}
+
+.pageHeader,
+.cardHeader,
+.metricRow,
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pageHeader {
+  border-bottom: 1px solid #dedbd4;
+  padding-bottom: 14px;
+}
+
+.pageTitle,
+.cardTitle {
+  margin: 0;
+}
+
+.pageTitle {
+  font-size: 1.75rem;
+}
+
+.card {
+  display: grid;
+  gap: 14px;
+  min-height: 260px;
+  border: 1px solid #dedbd4;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fffdf8;
+  color: #211f1a;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: #7b5b24;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.muted {
+  color: #6d675d;
+}
+
+.errorText {
+  color: #b42318;
+}
+
+.metricValue {
+  display: block;
+  color: #315c43;
+  font-size: 1.85rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.detailList,
+.summaryBand,
+.debugList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.detailList,
+.debugList {
+  margin: 0;
+}
+
+.detailList div,
+.summaryBand div,
+.debugList div {
+  border: 1px solid #e2ded5;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.detailList dt,
+.debugList dt {
+  color: #6d675d;
+  font-size: 0.875rem;
+}
+
+.detailList dd,
+.debugList dd {
+  margin: 4px 0 0;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.primaryButton,
+.secondaryButton,
+.segmentedButton {
+  border: 1px solid #b8ad9b;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.primaryButton {
+  background: #315c43;
+  color: #fff;
+}
+
+.secondaryButton,
+.segmentedButton {
+  background: #fff;
+  color: #211f1a;
+}
+
+.primaryButton:disabled,
+.secondaryButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible,
+.segmentedButton:focus-visible,
+.input:focus-visible {
+  outline: 2px solid #9c6f24;
+  outline-offset: 2px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.actionRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.fieldLabel,
+.checkboxLabel {
+  font-weight: 700;
+}
+
+.checkboxLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input {
+  border: 1px solid #b8ad9b;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #fff;
+  color: #211f1a;
+}
+
+.segmentedControl {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.segmentedButtonActive {
+  border-color: #315c43;
+  background: #edf4ef;
+}
+
+.summaryBand {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-block: 1px solid #dedbd4;
+  padding-block: 14px;
+}
+
+.list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.listItem {
+  border: 1px solid #dedbd4;
+  border-radius: 8px;
+  padding: 12px;
+  background: #fff;
+}
+
+.listItem div {
+  display: grid;
+  gap: 4px;
+}
+
+@media (max-width: 640px) {
+  .pageHeader,
+  .cardHeader,
+  .metricRow,
+  .listItem {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .detailList,
+  .summaryBand,
+  .debugList {
+    grid-template-columns: 1fr;
+  }
+}

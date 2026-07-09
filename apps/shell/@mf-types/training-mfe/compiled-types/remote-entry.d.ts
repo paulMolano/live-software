@@ -1,2 +1,2 @@
-import { App } from './App';
-export default App;
+import { TrainingApp } from './routes/TrainingApp';
+export default TrainingApp;

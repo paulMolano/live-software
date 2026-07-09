@@ -8,8 +8,9 @@
   },
   "dependencies": {
     "@live-software/auth": "workspace:*",
-    "@live-software/ui-kit": "workspace:*",
     "@live-software/config": "workspace:*",
+    "@live-software/contracts": "workspace:*",
+    "@live-software/ui-kit": "workspace:*",
     "@tanstack/react-query": "^5.0.0",
     "@mantine/core": "9.4.1",
     "@mantine/hooks": "9.4.1",

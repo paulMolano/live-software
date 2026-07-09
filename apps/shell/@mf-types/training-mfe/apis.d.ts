@@ -1,3 +1,3 @@
 
-    export type RemoteKeys = 'training-mfe/App' | 'training-mfe/RemoteEntry';
-    type PackageType<T> = T extends 'training-mfe/RemoteEntry' ? typeof import('training-mfe/RemoteEntry') :T extends 'training-mfe/App' ? typeof import('training-mfe/App') :any;
+    export type RemoteKeys = 'training-mfe/App' | 'training-mfe/RemoteEntry' | 'training-mfe/TrainingApp' | 'training-mfe/TrainingDashboardWidget';
+    type PackageType<T> = T extends 'training-mfe/TrainingDashboardWidget' ? typeof import('training-mfe/TrainingDashboardWidget') :T extends 'training-mfe/TrainingApp' ? typeof import('training-mfe/TrainingApp') :T extends 'training-mfe/RemoteEntry' ? typeof import('training-mfe/RemoteEntry') :T extends 'training-mfe/App' ? typeof import('training-mfe/App') :any;

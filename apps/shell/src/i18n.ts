@@ -2,17 +2,28 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 const resources = {
-	es: {
+	'es-ES': {
 		translation: {
 			appName: 'Shell de Software Vida',
 			navHome: 'Inicio',
+			navDashboard: 'Dashboard',
 			navTraining: 'Entrenamiento',
+			navFinance: 'Finanzas',
 			homeTitle: 'Base de plataforma lista',
 			homeBody:
 				'Esta shell centraliza proveedores globales y carga remotes en runtime.',
+			dashboardTitle: 'Dashboard personal',
+			dashboardSubtitle:
+				'Hola, {{name}}. Vista de {{range}} dias con widgets de dominio.',
+			dashboardEventsTitle: 'Eventos recientes',
+			dashboardNoEvents: 'Sin eventos recientes.',
 			trainingTitle: 'Ruta de entrenamiento',
 			trainingBody:
 				'Este espacio carga el training-mfe como remote por Module Federation.',
+			forbiddenTitle: 'Acceso no disponible',
+			forbiddenBody: 'Tu sesion actual no tiene permisos para esta seccion.',
+			featureDisabledTitle: 'Modulo desactivado',
+			featureDisabledBody: 'Este modulo esta apagado por feature flag.',
 			loadingRemote: 'Cargando remote {{name}}...',
 			remoteErrorTitle: 'No se pudo cargar el remote {{name}}',
 			remoteErrorDescription:
@@ -31,8 +42,8 @@ const resources = {
 			themeDark: 'Oscuro',
 			themeAuto: 'Sistema',
 			languageLabel: 'Idioma',
-			languageEs: 'Espanol',
-			languageEn: 'Ingles',
+			languageEs: 'Espanol (ES)',
+			languageEn: 'Ingles (US)',
 			skipToMain: 'Saltar al contenido principal',
 			authLabel: 'Autenticacion',
 			authStatus: 'Sesion',
@@ -54,17 +65,28 @@ const resources = {
 			authProtectedError: 'No se pudo comprobar la API protegida',
 		},
 	},
-	en: {
+	'en-US': {
 		translation: {
 			appName: 'Software Vida Shell',
 			navHome: 'Home',
+			navDashboard: 'Dashboard',
 			navTraining: 'Training',
+			navFinance: 'Finance',
 			homeTitle: 'Platform foundation ready',
 			homeBody:
 				'This shell centralizes global providers and loads remotes at runtime.',
+			dashboardTitle: 'Personal dashboard',
+			dashboardSubtitle:
+				'Hi, {{name}}. {{range}} day view with domain widgets.',
+			dashboardEventsTitle: 'Recent events',
+			dashboardNoEvents: 'No recent events.',
 			trainingTitle: 'Training route',
 			trainingBody:
 				'This area loads training-mfe as a Module Federation remote.',
+			forbiddenTitle: 'Access unavailable',
+			forbiddenBody: 'Your current session cannot access this section.',
+			featureDisabledTitle: 'Module disabled',
+			featureDisabledBody: 'This module is turned off by feature flag.',
 			loadingRemote: 'Loading remote {{name}}...',
 			remoteErrorTitle: 'Failed to load remote {{name}}',
 			remoteErrorDescription:
@@ -83,8 +105,8 @@ const resources = {
 			themeDark: 'Dark',
 			themeAuto: 'System',
 			languageLabel: 'Language',
-			languageEs: 'Spanish',
-			languageEn: 'English',
+			languageEs: 'Spanish (ES)',
+			languageEn: 'English (US)',
 			skipToMain: 'Skip to main content',
 			authLabel: 'Authentication',
 			authStatus: 'Session',
@@ -110,8 +132,8 @@ const resources = {
 
 void i18n.use(initReactI18next).init({
 	resources,
-	lng: 'es',
-	fallbackLng: 'es',
+	lng: 'es-ES',
+	fallbackLng: 'es-ES',
 	interpolation: {
 		escapeValue: false,
 	},

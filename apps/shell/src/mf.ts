@@ -12,6 +12,11 @@ const PROVIDERS: Array<{ alias: string; name: string; entry: string }> = [
     name: 'training_mfe',
     entry: 'http://localhost:8101/remoteEntry.js',
   },
+  {
+    alias: 'finance-mfe',
+    name: 'finance_mfe',
+    entry: 'http://localhost:8102/remoteEntry.js',
+  },
 ];
 
 // `type` is omitted so the federation runtime auto-detects the entry format.

@@ -1,0 +1,3 @@
+
+    export type RemoteKeys = 'finance-mfe/App' | 'finance-mfe/RemoteEntry' | 'finance-mfe/FinanceApp' | 'finance-mfe/FinanceDashboardWidget';
+    type PackageType<T> = T extends 'finance-mfe/FinanceDashboardWidget' ? typeof import('finance-mfe/FinanceDashboardWidget') :T extends 'finance-mfe/FinanceApp' ? typeof import('finance-mfe/FinanceApp') :T extends 'finance-mfe/RemoteEntry' ? typeof import('finance-mfe/RemoteEntry') :T extends 'finance-mfe/App' ? typeof import('finance-mfe/App') :any;
