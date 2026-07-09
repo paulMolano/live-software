@@ -5,6 +5,13 @@
   "root": "packages/config",
   "sourceRoot": "packages/config/src",
   "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
+        "cwd": "packages/config"
+      }
+    },
     "typecheck": {
       "executor": "nx:run-commands",
       "options": {
@@ -13,11 +20,16 @@
     },
     "build": {
       "executor": "nx:run-commands",
-      "outputs": ["{workspaceRoot}/dist/packages/config"],
+      "outputs": [
+        "{workspaceRoot}/dist/packages/config"
+      ],
       "options": {
         "command": "tsc -p packages/config/tsconfig.json"
       }
     }
   },
-  "tags": ["scope:shared", "type:config"]
+  "tags": [
+    "scope:shared",
+    "type:config"
+  ]
 }

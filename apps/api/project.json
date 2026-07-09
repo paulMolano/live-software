@@ -17,6 +17,13 @@
 				"command": "pnpm --filter @live-software/api typecheck"
 			}
 		},
+		"lint": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "eslint \"src/**/*.ts\" \"test/**/*.ts\"",
+				"cwd": "apps/api"
+			}
+		},
 		"build": {
 			"executor": "nx:run-commands",
 			"outputs": [

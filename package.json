@@ -15,20 +15,24 @@
     "prisma:migrate:dev": "pnpm --filter @live-software/api prisma:migrate:dev"
   },
   "devDependencies": {
+    "@nx/eslint-plugin": "23.0.1",
     "@nx/react": "23.0.1",
     "@rspack/cli": "catalog:",
     "@rspack/core": "catalog:",
     "@rspack/dev-server": "catalog:",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@typescript-eslint/eslint-plugin": "^8.46.1",
+    "@typescript-eslint/parser": "^8.46.1",
     "dotenv": "16.4.7",
+    "eslint": "^8.57.1",
     "nx": "23.0.1",
     "typescript": "6.0.3"
   },
   "dependencies": {
-    "@module-federation/enhanced": "^2.4.0",
-    "@module-federation/runtime": "^2.4.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "@module-federation/enhanced": "catalog:",
+    "@module-federation/runtime": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   }
 }

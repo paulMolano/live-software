@@ -32,10 +32,13 @@
     "lint": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "tsc -p tsconfig.json --noEmit",
+        "command": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
         "cwd": "apps/finance-mfe"
       }
     }
-  }
+  },
+  "tags": [
+    "scope:finance",
+    "type:app"
+  ]
 }
-

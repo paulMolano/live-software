@@ -16,7 +16,7 @@ import {
 	type ObservabilityEntry,
 } from '@live-software/contracts';
 
-type ObservabilityContextValue = ObservabilityClient & {
+type ObservabilityFeedContextValue = {
 	entries: ObservabilityEntry[];
 	clearEntries: () => void;
 };
@@ -36,7 +36,9 @@ export const shellObservabilityClient: ObservabilityClient = {
 	},
 };
 
-const ObservabilityContext = createContext<ObservabilityContextValue | null>(null);
+const ObservabilityClientContext = createContext<ObservabilityClient | null>(null);
+const ObservabilityFeedContext =
+	createContext<ObservabilityFeedContextValue | null>(null);
 
 type ObservabilityProviderProps = {
 	children: ReactNode;
@@ -65,24 +67,25 @@ export function ObservabilityProvider({
 		});
 	}, []);
 
-	const value = useMemo<ObservabilityContextValue>(
+	const feedValue = useMemo<ObservabilityFeedContextValue>(
 		() => ({
-			...client,
 			entries,
 			clearEntries: () => setEntries([]),
 		}),
-		[client, entries],
+		[entries],
 	);
 
 	return (
-		<ObservabilityContext.Provider value={value}>
-			{children}
-		</ObservabilityContext.Provider>
+		<ObservabilityClientContext.Provider value={client}>
+			<ObservabilityFeedContext.Provider value={feedValue}>
+				{children}
+			</ObservabilityFeedContext.Provider>
+		</ObservabilityClientContext.Provider>
 	);
 }
 
-export function useObservability(): ObservabilityContextValue {
-	const context = useContext(ObservabilityContext);
+export function useObservability(): ObservabilityClient {
+	const context = useContext(ObservabilityClientContext);
 
 	if (!context) {
 		throw new Error('useObservability must be used inside ObservabilityProvider.');
@@ -92,5 +95,25 @@ export function useObservability(): ObservabilityContextValue {
 }
 
 export function useObservabilityFeed(): ObservabilityEntry[] {
-	return useObservability().entries;
+	const context = useContext(ObservabilityFeedContext);
+
+	if (!context) {
+		throw new Error(
+			'useObservabilityFeed must be used inside ObservabilityProvider.',
+		);
+	}
+
+	return context.entries;
+}
+
+export function useClearObservabilityFeed(): () => void {
+	const context = useContext(ObservabilityFeedContext);
+
+	if (!context) {
+		throw new Error(
+			'useClearObservabilityFeed must be used inside ObservabilityProvider.',
+		);
+	}
+
+	return context.clearEntries;
 }

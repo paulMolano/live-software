@@ -11,23 +11,22 @@
     "@live-software/config": "workspace:*",
     "@live-software/contracts": "workspace:*",
     "@live-software/ui-kit": "workspace:*",
-    "@tanstack/react-query": "^5.0.0",
-    "@mantine/core": "9.4.1",
-    "@mantine/hooks": "9.4.1",
-    "@module-federation/enhanced": "^2.4.0",
-    "@module-federation/runtime": "^2.4.0",
+    "@tanstack/react-query": "catalog:",
+    "@mantine/core": "catalog:",
+    "@mantine/hooks": "catalog:",
+    "@module-federation/enhanced": "catalog:",
+    "@module-federation/runtime": "catalog:",
     "i18next": "25.6.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "catalog:",
+    "react-dom": "catalog:",
     "react-i18next": "16.3.2",
-    "zustand": "^5.0.0"
+    "zustand": "catalog:"
   },
   "devDependencies": {
     "@rspack/cli": "catalog:",
     "@rspack/core": "catalog:",
     "@rspack/dev-server": "catalog:",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "typescript": "~5.9.2"
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:"
   }
 }

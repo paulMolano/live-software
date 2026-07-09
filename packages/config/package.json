@@ -9,6 +9,6 @@
   },
   "types": "./src/index.ts",
   "dependencies": {
-    "@tanstack/react-query": "^5.0.0"
+    "@tanstack/react-query": "catalog:"
   }
 }

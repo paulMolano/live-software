@@ -58,9 +58,9 @@ export function PermissionsProvider({
 					case 'dashboard:view':
 						return permissions.dashboard.canView;
 					case 'training:view':
-						return true;
+						return permissions.training.canView;
 					case 'finance:view':
-						return true;
+						return permissions.finance.canView;
 				}
 			},
 			setTrainingPermission: (permission, enabled) =>

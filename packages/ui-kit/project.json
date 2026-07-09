@@ -5,6 +5,13 @@
   "root": "packages/ui-kit",
   "sourceRoot": "packages/ui-kit/src",
   "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
+        "cwd": "packages/ui-kit"
+      }
+    },
     "typecheck": {
       "executor": "nx:run-commands",
       "options": {
@@ -13,11 +20,16 @@
     },
     "build": {
       "executor": "nx:run-commands",
-      "outputs": ["{workspaceRoot}/dist/packages/ui-kit"],
+      "outputs": [
+        "{workspaceRoot}/dist/packages/ui-kit"
+      ],
       "options": {
         "command": "tsc -p packages/ui-kit/tsconfig.json"
       }
     }
   },
-  "tags": ["scope:shared", "type:ui"]
+  "tags": [
+    "scope:shared",
+    "type:ui"
+  ]
 }

@@ -9,6 +9,6 @@
   },
   "types": "./src/index.ts",
   "dependencies": {
-    "@mantine/core": "9.4.1"
+    "@mantine/core": "catalog:"
   }
 }

@@ -5,6 +5,13 @@
   "root": "packages/shared-utils",
   "sourceRoot": "packages/shared-utils/src",
   "targets": {
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
+        "cwd": "packages/shared-utils"
+      }
+    },
     "typecheck": {
       "executor": "nx:run-commands",
       "options": {
@@ -13,11 +20,16 @@
     },
     "build": {
       "executor": "nx:run-commands",
-      "outputs": ["{workspaceRoot}/dist/packages/shared-utils"],
+      "outputs": [
+        "{workspaceRoot}/dist/packages/shared-utils"
+      ],
       "options": {
         "command": "tsc -p packages/shared-utils/tsconfig.json"
       }
     }
   },
-  "tags": ["scope:shared", "type:utility"]
+  "tags": [
+    "scope:shared",
+    "type:utility"
+  ]
 }

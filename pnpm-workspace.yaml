@@ -3,14 +3,23 @@ packages:
   - "packages/*"
 
 autoInstallPeers: false
-confirmModulesPurge: false
 savePrefix: ""
 strictPeerDependencies: true
 
 catalog:
+  "@mantine/core": "9.4.1"
+  "@mantine/hooks": "9.4.1"
+  "@module-federation/enhanced": "2.6.0"
+  "@module-federation/runtime": "2.6.0"
   "@rspack/cli": "2.0.3"
   "@rspack/core": "2.0.3"
   "@rspack/dev-server": "2.0.1"
+  "@tanstack/react-query": "5.101.2"
+  "@types/react": "19.2.17"
+  "@types/react-dom": "19.2.3"
+  react: "19.2.7"
+  react-dom: "19.2.7"
+  zustand: "5.0.14"
 
 allowBuilds:
   "@nestjs/core": true

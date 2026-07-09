@@ -8,18 +8,17 @@
   },
   "dependencies": {
     "@live-software/contracts": "workspace:*",
-    "@module-federation/enhanced": "^2.4.0",
-    "@tanstack/react-query": "^5.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "zustand": "^5.0.0"
+    "@module-federation/enhanced": "catalog:",
+    "@tanstack/react-query": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "zustand": "catalog:"
   },
   "devDependencies": {
     "@rspack/cli": "catalog:",
     "@rspack/core": "catalog:",
     "@rspack/dev-server": "catalog:",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "typescript": "~5.9.2"
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:"
   }
 }
