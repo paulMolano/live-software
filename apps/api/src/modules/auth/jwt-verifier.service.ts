@@ -28,15 +28,27 @@ type JwksCache = {
 
 const jwksCacheTtlMs = 5 * 60 * 1000;
 
-function decodeJson<T>(encoded: string): T {
+function isRecord(value: unknown): value is Record<string, unknown> {
+	return typeof value === 'object' && value !== null;
+}
+
+function decodeJson(encoded: string): unknown {
 	const json = Buffer.from(encoded, 'base64url').toString('utf8');
 	const parsed: unknown = JSON.parse(json);
 
-	if (typeof parsed !== 'object' || parsed === null) {
+	if (!isRecord(parsed)) {
 		throw new UnauthorizedException('Invalid JWT payload.');
 	}
 
-	return parsed as T;
+	return parsed;
+}
+
+function isJwtHeader(value: unknown): value is JwtHeader {
+	return (
+		isRecord(value) &&
+		typeof value.alg === 'string' &&
+		typeof value.kid === 'string'
+	);
 }
 
 function readString(payload: JwtPayload, key: string): string | undefined {
@@ -53,14 +65,13 @@ function readRoles(payload: JwtPayload): string[] {
 	const realmAccess = payload['realm_access'];
 
 	if (
-		typeof realmAccess !== 'object' ||
-		realmAccess === null ||
+		!isRecord(realmAccess) ||
 		!('roles' in realmAccess)
 	) {
 		return [];
 	}
 
-	const roles = (realmAccess as { roles?: unknown }).roles;
+	const roles = realmAccess['roles'];
 	return Array.isArray(roles)
 		? roles.filter((role): role is string => typeof role === 'string')
 		: [];
@@ -96,10 +107,10 @@ function parseToken(token: string): {
 		throw new UnauthorizedException('Invalid bearer token.');
 	}
 
-	const header = decodeJson<JwtHeader>(encodedHeader);
-	const payload = decodeJson<JwtPayload>(encodedPayload);
+	const header = decodeJson(encodedHeader);
+	const payload = decodeJson(encodedPayload);
 
-	if (header.alg !== 'RS256' || typeof header.kid !== 'string') {
+	if (!isJwtHeader(header) || header.alg !== 'RS256') {
 		throw new UnauthorizedException('Unsupported bearer token.');
 	}
 
@@ -112,19 +123,19 @@ function parseToken(token: string): {
 }
 
 function isJwk(value: unknown): value is Jwk {
-	if (typeof value !== 'object' || value === null) {
+	if (!isRecord(value)) {
 		return false;
 	}
 
-	return 'kty' in value && typeof (value as { kty?: unknown }).kty === 'string';
+	return 'kty' in value && typeof value['kty'] === 'string';
 }
 
 function isJwksBody(value: unknown): value is { keys: Jwk[] } {
-	if (typeof value !== 'object' || value === null || !('keys' in value)) {
+	if (!isRecord(value) || !('keys' in value)) {
 		return false;
 	}
 
-	const keys = (value as { keys?: unknown }).keys;
+	const keys = value['keys'];
 	return Array.isArray(keys) && keys.every(isJwk);
 }
 

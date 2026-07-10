@@ -1,7 +1,3 @@
-export type AuthUser = {
-	id: string;
-	roles: string[];
-	username?: string;
-	email?: string;
-	name?: string;
-};
+import type { AuthenticatedUser } from '@live-software/contracts';
+
+export type AuthUser = AuthenticatedUser;

@@ -30,7 +30,7 @@ export default defineConfig((_env, argv) => {
     entry: { main: './src/index.ts' },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      publicPath: 'auto',
+      publicPath: `http://localhost:${PORT}/`,
       uniqueName: NAME,
       clean: true,
     },
@@ -76,6 +76,7 @@ export default defineConfig((_env, argv) => {
       new rspack.HtmlRspackPlugin({ template: './index.html' }),
       new ModuleFederationPlugin({
         name: NAME,
+        dts: false,
         // No build-time `remotes:` block - registered at runtime in
         // src/mf.ts at module load time.
         shared,

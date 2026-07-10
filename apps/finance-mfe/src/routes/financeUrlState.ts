@@ -1,12 +1,5 @@
 import { publicRoutes } from '@live-software/contracts';
-import type { FinanceView } from '@live-software/contracts';
-
-const validViews: readonly FinanceView[] = [
-	'summary',
-	'debts',
-	'expenses',
-	'transactions',
-];
+import { financeViews, type FinanceView } from '@live-software/contracts';
 
 export type FinanceUrlState = {
 	month?: string;
@@ -26,6 +19,10 @@ function isMonth(value: string | null): value is string {
 	return value !== null && /^\d{4}-\d{2}$/.test(value);
 }
 
+function isFinanceView(value: string | null): value is FinanceView {
+	return value !== null && financeViews.some((view) => view === value);
+}
+
 export function readFinanceUrlState(): FinanceUrlState {
 	const params = getFinanceSearchParams();
 	const month = params.get('month');
@@ -33,9 +30,7 @@ export function readFinanceUrlState(): FinanceUrlState {
 
 	return {
 		month: isMonth(month) ? month : undefined,
-		view: validViews.includes(view as FinanceView)
-			? (view as FinanceView)
-			: undefined,
+		view: isFinanceView(view) ? view : undefined,
 	};
 }
 

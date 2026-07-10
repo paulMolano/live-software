@@ -20,13 +20,14 @@ import { useAppContext } from './platform/appContext/AppContext';
 import { useFeatureFlags } from './platform/feature-flags/FeatureFlagsProvider';
 import { useNavigation } from './platform/navigation/NavigationProvider';
 import { usePlatformPermissions } from './platform/permissions/PermissionsProvider';
-import { useUiStore } from './state/ui-store';
+import { useUiStore, type DashboardLayoutMode } from './state/ui-store';
 import * as styles from './App.module.css';
 
 const TrainingApp = lazyProvider('training-mfe', 'TrainingApp');
 const FinanceApp = lazyProvider('finance-mfe', 'FinanceApp');
 
 type AppRoute = 'dashboard' | 'training' | 'finance';
+type ColorSchemeValue = 'light' | 'dark' | 'auto';
 
 type RouteDefinition = {
 	flag?: FeatureFlagKey;
@@ -83,7 +84,7 @@ function ThemeControls() {
 	const { colorScheme, setColorScheme } = useMantineColorScheme();
 
 	const options = useMemo(
-		() => [
+		(): ReadonlyArray<{ value: ColorSchemeValue; label: string }> => [
 			{ value: 'light', label: t('themeLight') },
 			{ value: 'dark', label: t('themeDark') },
 			{ value: 'auto', label: t('themeAuto') },
@@ -103,9 +104,7 @@ function ThemeControls() {
 						className={`${styles.controlButton} ${
 							isActive ? styles.controlButtonActive : ''
 						}`}
-						onClick={() =>
-							setColorScheme(option.value as 'light' | 'dark' | 'auto')
-						}
+						onClick={() => setColorScheme(option.value)}
 						aria-pressed={isActive}
 					>
 						{option.label}
@@ -148,6 +147,12 @@ function UiPreferencesControls() {
 		(state) => state.setDashboardLayoutMode,
 	);
 
+	const dashboardLayoutModes: readonly DashboardLayoutMode[] = ['stacked', 'split'];
+
+	const isDashboardLayoutMode = (value: string): value is DashboardLayoutMode => {
+		return dashboardLayoutModes.some((mode) => mode === value);
+	};
+
 	return (
 		<section className={styles.controlGroup} aria-label={t('uiStateLabel')}>
 			<span className={styles.controlLabel}>{t('uiStateLabel')}:</span>
@@ -167,9 +172,11 @@ function UiPreferencesControls() {
 				className={styles.controlSelect}
 				value={dashboardLayoutMode}
 				onChange={(event) => {
-					setDashboardLayoutMode(
-						event.currentTarget.value as 'stacked' | 'split',
-					);
+					const { value } = event.currentTarget;
+
+					if (isDashboardLayoutMode(value)) {
+						setDashboardLayoutMode(value);
+					}
 				}}
 			>
 				<option value="stacked">{t('layoutStacked')}</option>
@@ -356,7 +363,12 @@ export function App() {
 	);
 	const currentRouteDefinition =
 		routeDefinitions.find((routeDefinition) => routeDefinition.route === route) ??
-		routeDefinitions[0];
+		{
+			labelKey: 'navDashboard',
+			path: publicRoutes.dashboard,
+			permission: 'dashboard:view',
+			route: 'dashboard',
+		};
 	const hasPermission = permissions.hasPermission(
 		currentRouteDefinition.permission,
 	);

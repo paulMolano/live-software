@@ -1,8 +1,10 @@
 import { publicRoutes } from '@live-software/contracts';
-import type { TrainingRange, TrainingView } from '@live-software/contracts';
-
-const validRanges: readonly TrainingRange[] = ['7d', '30d', '90d'];
-const validViews: readonly TrainingView[] = ['summary', 'sessions', 'progress'];
+import {
+	trainingRanges,
+	trainingViews,
+	type TrainingRange,
+	type TrainingView,
+} from '@live-software/contracts';
 
 export type TrainingUrlState = {
 	range?: TrainingRange;
@@ -18,18 +20,22 @@ function getTrainingSearchParams(): URLSearchParams {
 	return new URLSearchParams(query);
 }
 
+function isTrainingRange(value: string | null): value is TrainingRange {
+	return value !== null && trainingRanges.some((range) => range === value);
+}
+
+function isTrainingView(value: string | null): value is TrainingView {
+	return value !== null && trainingViews.some((view) => view === value);
+}
+
 export function readTrainingUrlState(): TrainingUrlState {
 	const params = getTrainingSearchParams();
 	const range = params.get('range');
 	const view = params.get('view');
 
 	return {
-		range: validRanges.includes(range as TrainingRange)
-			? (range as TrainingRange)
-			: undefined,
-		view: validViews.includes(view as TrainingView)
-			? (view as TrainingView)
-			: undefined,
+		range: isTrainingRange(range) ? range : undefined,
+		view: isTrainingView(view) ? view : undefined,
 	};
 }
 

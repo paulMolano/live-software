@@ -29,6 +29,10 @@ const pkceReturnToKey = 'live-software:auth:return-to';
 const tokenSetKey = 'live-software:auth:token-set';
 const refreshSkewMs = 60_000;
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+	return typeof value === 'object' && value !== null;
+}
+
 function trimTrailingSlash(value: string): string {
 	return value.endsWith('/') ? value.slice(0, -1) : value;
 }
@@ -98,30 +102,30 @@ function readSessionValue(key: string): string | null {
 }
 
 function isTokenResponse(value: unknown): value is TokenResponse {
-	if (typeof value !== 'object' || value === null) {
+	if (!isRecord(value)) {
 		return false;
 	}
 
 	return (
 		'access_token' in value &&
-		typeof (value as { access_token?: unknown }).access_token === 'string'
+		typeof value['access_token'] === 'string'
 	);
 }
 
 function isStoredTokenSet(value: unknown): value is TokenSet {
-	if (typeof value !== 'object' || value === null) {
+	if (!isRecord(value)) {
 		return false;
 	}
 
-	const candidate = value as Partial<TokenSet>;
+	const candidate = value;
+	const userCandidate = isRecord(candidate['user']) ? candidate['user'] : null;
 
 	return (
-		typeof candidate.accessToken === 'string' &&
-		typeof candidate.expiresAt === 'number' &&
-		typeof candidate.user === 'object' &&
-		candidate.user !== null &&
-		typeof candidate.user.id === 'string' &&
-		Array.isArray(candidate.user.roles)
+		typeof candidate['accessToken'] === 'string' &&
+		typeof candidate['expiresAt'] === 'number' &&
+		userCandidate !== null &&
+		typeof userCandidate['id'] === 'string' &&
+		Array.isArray(userCandidate['roles'])
 	);
 }
 

@@ -32,6 +32,10 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 	return typeof value === 'object' && value !== null;
 }
 
+function hasEventDetail(value: Event): value is Event & { detail: unknown } {
+	return 'detail' in value;
+}
+
 function isAppEvent(value: unknown): value is AppEvent {
 	if (!isRecord(value) || typeof value['type'] !== 'string') {
 		return false;
@@ -67,22 +71,31 @@ function createEvent(event: AppEvent): Event {
 		return new CustomEvent<AppEvent>(APP_EVENT_NAME, { detail: event });
 	}
 
-	const fallbackEvent = new Event(APP_EVENT_NAME) as Event & {
-		detail: AppEvent;
-	};
-	fallbackEvent.detail = event;
+	const fallbackEvent = new Event(APP_EVENT_NAME);
+	Object.defineProperty(fallbackEvent, 'detail', {
+		value: event,
+		configurable: true,
+		enumerable: true,
+	});
 	return fallbackEvent;
 }
 
 function readAppEvent(event: Event): AppEvent | null {
-	const detail = 'detail' in event ? (event as CustomEvent<unknown>).detail : null;
+	const detail = hasEventDetail(event) ? event.detail : null;
 	return isAppEvent(detail) ? detail : null;
+}
+
+function isEventOfType<TType extends AppEventType>(
+	event: AppEvent,
+	type: TType,
+): event is AppEventByType<TType> {
+	return event.type === type;
 }
 
 export function createAppEventBus(): AppEventBus {
 	const listeners = new Map<
 		AppEventType,
-		Map<UntypedAppEventHandler, EventListener>
+		Map<Function, EventListener>
 	>();
 
 	const unsubscribe = <TType extends AppEventType>(
@@ -90,15 +103,14 @@ export function createAppEventBus(): AppEventBus {
 		handler: AppEventHandler<TType>,
 	) => {
 		const handlersForType = listeners.get(type);
-		const untypedHandler = handler as UntypedAppEventHandler;
-		const listener = handlersForType?.get(untypedHandler);
+		const listener = handlersForType?.get(handler);
 
 		if (!listener) {
 			return;
 		}
 
 		getEventTarget().removeEventListener(APP_EVENT_NAME, listener);
-		handlersForType?.delete(untypedHandler);
+		handlersForType?.delete(handler);
 
 		if (handlersForType?.size === 0) {
 			listeners.delete(type);
@@ -118,14 +130,13 @@ export function createAppEventBus(): AppEventBus {
 			const listener: EventListener = (domEvent) => {
 				const appEvent = readAppEvent(domEvent);
 
-				if (appEvent?.type === type) {
-					handler(appEvent as AppEventByType<TType>);
+				if (appEvent && isEventOfType(appEvent, type)) {
+					handler(appEvent);
 				}
 			};
-			const untypedHandler = handler as UntypedAppEventHandler;
 			const handlersForType = listeners.get(type) ?? new Map();
 
-			handlersForType.set(untypedHandler, listener);
+			handlersForType.set(handler, listener);
 			listeners.set(type, handlersForType);
 			getEventTarget().addEventListener(APP_EVENT_NAME, listener);
 

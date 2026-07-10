@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import {
+	financeViews,
 	logPlatformInfo,
 	navigateToPublicRoute,
 	publicRoutes,
@@ -17,12 +18,7 @@ import { useFinanceUiStore } from '../state/financeUiStore';
 import * as styles from '../finance.module.css';
 import { writeFinanceUrlState } from './financeUrlState';
 
-const viewOptions: readonly FinanceView[] = [
-	'summary',
-	'debts',
-	'expenses',
-	'transactions',
-];
+const viewOptions = financeViews;
 
 function formatMoney(value: number, hide: boolean, locale: string): string {
 	if (hide) {

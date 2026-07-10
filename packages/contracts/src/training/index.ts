@@ -5,4 +5,5 @@ export * from './exercise.js';
 export * from './exercise-content.js';
 export * from './exercise-profile.js';
 export * from './muscle.js';
+export * from './requests.js';
 export * from './responses.js';

@@ -1,5 +1,25 @@
-type SeedDemandLevel = 'LOW' | 'MEDIUM' | 'HIGH';
-type SeedLocale = 'EN' | 'ES';
+import {
+	BodyRegion,
+	DemandLevel,
+	EquipmentCategory,
+	EquipmentRequirement,
+	EvidenceSourceType,
+	ExerciseDifficulty,
+	ExerciseLaterality,
+	ExerciseMechanics,
+	ExerciseTipType,
+	KineticChain,
+	MovementPattern,
+	MuscleRole,
+	ResistanceCurve,
+	StimulusLevel,
+	SupportedLocale,
+} from '../../../generated/prisma/enums.js';
+
+type EnumValue<TEnum extends Record<string, string>> = TEnum[keyof TEnum];
+
+type SeedDemandLevel = EnumValue<typeof DemandLevel>;
+type SeedLocale = EnumValue<typeof SupportedLocale>;
 
 export type SeedNameTranslation = {
 	locale: SeedLocale;
@@ -14,30 +34,30 @@ export type SeedExerciseTranslation = SeedNameTranslation & {
 
 export type SeedMuscleGroup = {
 	slug: string;
-	region: 'UPPER_BODY' | 'LOWER_BODY' | 'CORE' | 'FULL_BODY';
+	region: EnumValue<typeof BodyRegion>;
 	translations: readonly SeedNameTranslation[];
 };
 
 export type SeedEquipment = {
 	slug: string;
-	category: 'BODYWEIGHT' | 'FREE_WEIGHT' | 'MACHINE' | 'CABLE' | 'BAND' | 'SUPPORT' | 'OTHER';
+	category: EnumValue<typeof EquipmentCategory>;
 	translations: readonly SeedNameTranslation[];
 };
 
 export type SeedExerciseMuscle = {
 	slug: string;
-	role: 'PRIMARY' | 'SECONDARY' | 'STABILIZER';
+	role: EnumValue<typeof MuscleRole>;
 	stimulusLevel: SeedDemandLevel;
 	notes?: string;
 };
 
 export type SeedExerciseEquipment = {
 	slug: string;
-	requirement: 'REQUIRED' | 'OPTIONAL' | 'ALTERNATIVE';
+	requirement: EnumValue<typeof EquipmentRequirement>;
 };
 
 export type SeedExerciseTip = {
-	type: 'SETUP' | 'CUE' | 'COMMON_MISTAKE' | 'SAFETY' | 'PROGRESSION';
+	type: EnumValue<typeof ExerciseTipType>;
 	sortOrder: number;
 	translations: readonly Array<{
 		locale: SeedLocale;
@@ -46,7 +66,7 @@ export type SeedExerciseTip = {
 };
 
 export type SeedExerciseReference = {
-	sourceType: 'PEER_REVIEWED_REVIEW' | 'PEER_REVIEWED_STUDY' | 'TEXTBOOK' | 'PROFESSIONAL_GUIDELINE' | 'CURATED_REFERENCE';
+	sourceType: EnumValue<typeof EvidenceSourceType>;
 	title: string;
 	citation?: string;
 	url?: string;
@@ -57,25 +77,12 @@ export type SeedExerciseReference = {
 export type SeedExercise = {
 	slug: string;
 	translations: readonly SeedExerciseTranslation[];
-	difficulty: 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED';
-	mechanics: 'COMPOUND' | 'ISOLATION';
-	movementPattern:
-	| 'SQUAT'
-	| 'HINGE'
-	| 'HORIZONTAL_PUSH'
-	| 'VERTICAL_PUSH'
-	| 'HORIZONTAL_PULL'
-	| 'VERTICAL_PULL'
-	| 'LUNGE'
-	| 'CARRY'
-	| 'ROTATION'
-	| 'ANTI_ROTATION'
-	| 'CORE'
-	| 'GAIT'
-	| 'OTHER';
-	laterality: 'BILATERAL' | 'UNILATERAL' | 'ALTERNATING' | 'ASYMMETRICAL';
-	kineticChain: 'OPEN' | 'CLOSED' | 'MIXED';
-	resistanceCurve: 'CONSTANT' | 'ASCENDING' | 'DESCENDING' | 'VARIABLE' | 'BODYWEIGHT_VARIABLE' | 'UNKNOWN';
+	difficulty: EnumValue<typeof ExerciseDifficulty>;
+	mechanics: EnumValue<typeof ExerciseMechanics>;
+	movementPattern: EnumValue<typeof MovementPattern>;
+	laterality: EnumValue<typeof ExerciseLaterality>;
+	kineticChain: EnumValue<typeof KineticChain>;
+	resistanceCurve: EnumValue<typeof ResistanceCurve>;
 	technicalDemand: SeedDemandLevel;
 	mobilityDemand: SeedDemandLevel;
 	stabilityDemand: SeedDemandLevel;

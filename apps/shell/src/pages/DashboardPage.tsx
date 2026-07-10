@@ -52,6 +52,17 @@ const featureFlagLabels: Array<{ key: FeatureFlagKey; label: string }> = [
 	},
 ];
 
+const trainingPermissionKeys: readonly (keyof PlatformPermissions['training'])[] = [
+	'canView',
+	'canCreateSession',
+];
+
+const financePermissionKeys: readonly (keyof PlatformPermissions['finance'])[] = [
+	'canView',
+	'canCreateTransaction',
+	'canViewSensitiveAmounts',
+];
+
 function formatTime(value: string, locale: string): string {
 	return new Intl.DateTimeFormat(locale, {
 		hour: '2-digit',
@@ -302,11 +313,10 @@ export function DashboardPage() {
 
 					<h4 className={styles.subheading}>Permissions</h4>
 					<div className={styles.toggleGrid}>
-						{(
-							Object.entries(permissions.permissions.training) as Array<
-								[keyof PlatformPermissions['training'], boolean]
-							>
-						).map(([key, value]) => (
+						{trainingPermissionKeys.map((key) => {
+							const value = permissions.permissions.training[key];
+
+							return (
 							<label key={`training-${key}`} className={styles.toggleLabel}>
 								<input
 									type="checkbox"
@@ -315,12 +325,12 @@ export function DashboardPage() {
 								/>
 								training.{key}: {booleanLabel(value)}
 							</label>
-						))}
-						{(
-							Object.entries(permissions.permissions.finance) as Array<
-								[keyof PlatformPermissions['finance'], boolean]
-							>
-						).map(([key, value]) => (
+							);
+						})}
+						{financePermissionKeys.map((key) => {
+							const value = permissions.permissions.finance[key];
+
+							return (
 							<label key={`finance-${key}`} className={styles.toggleLabel}>
 								<input
 									type="checkbox"
@@ -329,7 +339,8 @@ export function DashboardPage() {
 								/>
 								finance.{key}: {booleanLabel(value)}
 							</label>
-						))}
+							);
+						})}
 					</div>
 				</VerificationPanel>
 

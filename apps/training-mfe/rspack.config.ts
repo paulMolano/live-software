@@ -30,7 +30,7 @@ export default defineConfig((_env, argv) => {
     entry: { main: './src/index.ts' },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      publicPath: 'auto',
+      publicPath: `http://localhost:${PORT}/`,
       uniqueName: NAME,
       clean: true,
     },
@@ -85,6 +85,7 @@ export default defineConfig((_env, argv) => {
       new ModuleFederationPlugin({
         name: NAME,
         filename: 'remoteEntry.js',
+        dts: false,
         exposes: {
           './App': './src/App.tsx',
           './RemoteEntry': './src/remote-entry.tsx',

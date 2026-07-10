@@ -35,6 +35,28 @@ function getEventTarget(): EventTarget {
 	return typeof window === 'undefined' ? fallbackTarget : window;
 }
 
+function hasEventDetail(value: Event): value is Event & { detail: unknown } {
+	return 'detail' in value;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+	return typeof value === 'object' && value !== null;
+}
+
+function isObservabilityEntry(value: unknown): value is ObservabilityEntry {
+	if (!isRecord(value)) {
+		return false;
+	}
+
+	return (
+		typeof value.id === 'string' &&
+		(value.level === 'info' || value.level === 'event' || value.level === 'error') &&
+		typeof value.message === 'string' &&
+		typeof value.source === 'string' &&
+		typeof value.occurredAtIso === 'string'
+	);
+}
+
 function createEvent(entry: ObservabilityEntry): Event {
 	if (typeof CustomEvent === 'function') {
 		return new CustomEvent<ObservabilityEntry>(OBSERVABILITY_EVENT_NAME, {
@@ -42,10 +64,12 @@ function createEvent(entry: ObservabilityEntry): Event {
 		});
 	}
 
-	const fallbackEvent = new Event(OBSERVABILITY_EVENT_NAME) as Event & {
-		detail: ObservabilityEntry;
-	};
-	fallbackEvent.detail = entry;
+	const fallbackEvent = new Event(OBSERVABILITY_EVENT_NAME);
+	Object.defineProperty(fallbackEvent, 'detail', {
+		value: entry,
+		configurable: true,
+		enumerable: true,
+	});
 	return fallbackEvent;
 }
 
@@ -77,10 +101,9 @@ export function subscribeObservabilityEntries(
 	handler: ObservabilityEntryHandler,
 ): () => void {
 	const listener: EventListener = (event) => {
-		const detail =
-			'detail' in event ? (event as CustomEvent<ObservabilityEntry>).detail : null;
+		const detail = hasEventDetail(event) ? event.detail : null;
 
-		if (detail) {
+		if (isObservabilityEntry(detail)) {
 			handler(detail);
 		}
 	};

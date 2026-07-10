@@ -3,6 +3,8 @@ import {
 	logPlatformInfo,
 	navigateToPublicRoute,
 	publicRoutes,
+	trainingRanges,
+	trainingViews,
 	type TrainingRange,
 	type TrainingView,
 } from '@live-software/contracts';
@@ -17,8 +19,12 @@ import { useTrainingUiStore } from '../state/trainingUiStore';
 import * as styles from '../training.module.css';
 import { writeTrainingUrlState } from './trainingUrlState';
 
-const rangeOptions: readonly TrainingRange[] = ['7d', '30d', '90d'];
-const viewOptions: readonly TrainingView[] = ['summary', 'sessions', 'progress'];
+const rangeOptions = trainingRanges;
+const viewOptions = trainingViews;
+
+function isTrainingRange(value: string): value is TrainingRange {
+	return rangeOptions.some((range) => range === value);
+}
 
 function formatSessionDate(value: string, locale: string): string {
 	return new Intl.DateTimeFormat(locale, {
@@ -144,9 +150,13 @@ export function TrainingPage() {
 					id="training-range"
 					className={styles.select}
 					value={selectedRange}
-					onChange={(event) =>
-						updateRange(event.currentTarget.value as TrainingRange)
-					}
+					onChange={(event) => {
+						const { value } = event.currentTarget;
+
+						if (isTrainingRange(value)) {
+							updateRange(value);
+						}
+					}}
 				>
 					{rangeOptions.map((range) => (
 						<option key={range} value={range}>

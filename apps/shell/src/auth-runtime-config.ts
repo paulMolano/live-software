@@ -7,16 +7,18 @@ type AuthRuntimeConfig = {
 	apiBaseUrl?: string;
 };
 
-type LiveSoftwareWindow = Window & {
-	__LIVE_SOFTWARE_AUTH__?: AuthRuntimeConfig;
-};
+declare global {
+	interface Window {
+		__LIVE_SOFTWARE_AUTH__?: AuthRuntimeConfig;
+	}
+}
 
 function trimTrailingSlash(value: string): string {
 	return value.endsWith('/') ? value.slice(0, -1) : value;
 }
 
 function runtimeConfig(): AuthRuntimeConfig {
-	return (window as LiveSoftwareWindow).__LIVE_SOFTWARE_AUTH__ ?? {};
+	return window.__LIVE_SOFTWARE_AUTH__ ?? {};
 }
 
 export function createShellAuthConfig(): AuthConfig {

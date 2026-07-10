@@ -2,7 +2,13 @@ import type { QueryDebugDto } from './platform.js';
 
 export type CurrencyCode = 'EUR';
 
-export type FinanceView = 'summary' | 'debts' | 'expenses' | 'transactions';
+export const financeViews = [
+	'summary',
+	'debts',
+	'expenses',
+	'transactions',
+] as const;
+export type FinanceView = (typeof financeViews)[number];
 
 export type FinanceMonthlySummaryDto = {
 	month: string;

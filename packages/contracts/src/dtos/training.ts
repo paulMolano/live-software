@@ -1,10 +1,13 @@
 import type { QueryDebugDto } from './platform.js';
 
-export type TrainingRange = '7d' | '30d' | '90d';
+export const trainingRanges = ['7d', '30d', '90d'] as const;
+export type TrainingRange = (typeof trainingRanges)[number];
 
-export type TrainingView = 'summary' | 'sessions' | 'progress';
+export const trainingViews = ['summary', 'sessions', 'progress'] as const;
+export type TrainingView = (typeof trainingViews)[number];
 
-export type TrainingSessionType = 'strength' | 'cardio' | 'mobility';
+export const trainingSessionTypes = ['strength', 'cardio', 'mobility'] as const;
+export type TrainingSessionType = (typeof trainingSessionTypes)[number];
 
 export type TrainingSummaryDto = {
 	weeklySessions: number;

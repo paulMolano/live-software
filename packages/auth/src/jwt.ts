@@ -2,6 +2,10 @@ import type { AuthUser } from './types';
 
 type JwtPayload = Record<string, unknown>;
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+	return typeof value === 'object' && value !== null;
+}
+
 function decodeBase64Url(value: string): string {
 	const normalized = value.replace(/-/gu, '+').replace(/_/gu, '/');
 	const padded = normalized.padEnd(Math.ceil(normalized.length / 4) * 4, '=');
@@ -17,14 +21,13 @@ function readRoles(payload: JwtPayload): string[] {
 	const realmAccess = payload['realm_access'];
 
 	if (
-		typeof realmAccess !== 'object' ||
-		realmAccess === null ||
+		!isRecord(realmAccess) ||
 		!('roles' in realmAccess)
 	) {
 		return [];
 	}
 
-	const roles = (realmAccess as { roles?: unknown }).roles;
+	const roles = realmAccess['roles'];
 	return Array.isArray(roles)
 		? roles.filter((role): role is string => typeof role === 'string')
 		: [];
@@ -40,11 +43,11 @@ export function parseJwtPayload(token: string): JwtPayload {
 	const decoded = decodeBase64Url(encodedPayload);
 	const parsed: unknown = JSON.parse(decoded);
 
-	if (typeof parsed !== 'object' || parsed === null) {
+	if (!isRecord(parsed)) {
 		throw new Error('Invalid JWT payload.');
 	}
 
-	return parsed as JwtPayload;
+	return parsed;
 }
 
 export function userFromAccessToken(token: string): AuthUser {

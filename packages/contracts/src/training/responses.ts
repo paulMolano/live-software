@@ -7,3 +7,9 @@ export type GetExercisesResponse = {
 export type GetExerciseByIdResponse = {
 	data: Exercise;
 };
+
+export type DeleteExerciseResponse = {
+	data: {
+		id: string;
+	};
+};
